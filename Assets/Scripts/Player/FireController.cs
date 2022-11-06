@@ -150,7 +150,7 @@ public class FireController : MonoBehaviour
             _canFire = false;
         }
 
-        _currentWeapon.Fire().Invoke(_firePosition,_firePosition.transform.right);
+        _currentWeapon.Fire().Invoke(_firePosition,_firePosition.transform.right, GetComponent<UpgradeController>().damageMultiplier);
         _playerAnimation.Shoot();
         _audioSource.PlayOneShot(_currentWeapon.gunshot);
         bulletCount -= 1;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyHealthController : MonoBehaviour
 {
-    [SerializeField] int _totalHealth = 2;
+    [SerializeField] float _totalHealth = 6;
     [SerializeField] GameObject _deathEffect;
     [SerializeField] int _score = 100;
     
@@ -13,7 +13,7 @@ public class EnemyHealthController : MonoBehaviour
 
     public Action onDeath;
 
-    public void Damage(int damageAmount)
+    public void Damage(float damageAmount)
     {
         if((_totalHealth -= damageAmount) <= 0)
         {
@@ -22,7 +22,7 @@ public class EnemyHealthController : MonoBehaviour
                 GameObject.Instantiate(_deathSound,transform.position, Quaternion.identity).transform.SetParent(null);
                 Instantiate(_deathEffect, transform.position, transform.rotation);
                 GetComponent<DropitemController>()?.DropItem();
-                ScoreController.GetInstance().Add(_score);
+                ScoreController.GetInstance()?.Add(_score);
             }
             onDeath?.Invoke();
             Destroy(gameObject);

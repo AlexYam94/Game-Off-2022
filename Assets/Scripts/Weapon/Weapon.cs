@@ -26,7 +26,7 @@ public class Weapon : ScriptableObject
         crossbow
     }
 
-    public Action<Transform, Vector2> Fire()
+    public Action<Transform, Vector2, float> Fire()
     {
         switch (type)
         {
@@ -42,13 +42,14 @@ public class Weapon : ScriptableObject
         return PistolFire;
     }
 
-    private void PistolFire(Transform firePoint, Vector2 direction)
+    private void PistolFire(Transform firePoint, Vector2 direction, float damageMultiplier)
     {
         Bullet b = GameObject.Instantiate(bullet);
         b.transform.position = firePoint.position;
         b.SetDirection(direction);
+        b.damageMultiplier = damageMultiplier;
     }
-    private void ShotgunFire(Transform firePoint, Vector2 direction)
+    private void ShotgunFire(Transform firePoint, Vector2 direction, float damageMultiplier)
     {
         int bulletCount = 10;
         Quaternion newRot = firePoint.rotation;
@@ -69,6 +70,7 @@ public class Weapon : ScriptableObject
             //b.transform.position = origin;
 
             b.canFly = false;
+            b.damageMultiplier = damageMultiplier;
             bullets[i] = b;
             if (i % 2 == 0)
             {
@@ -84,16 +86,18 @@ public class Weapon : ScriptableObject
             b.canFly = true;
         }
     }
-    private void SmgFire(Transform firePoint, Vector2 direction)
+    private void SmgFire(Transform firePoint, Vector2 direction, float damageMultiplier)
     {
         Bullet b = GameObject.Instantiate(bullet);
         b.transform.position = firePoint.position;
         b.SetDirection(direction);
+        b.damageMultiplier = damageMultiplier;
     }
-    private void CrossbpwFire(Transform firePoint, Vector2 direction)
+    private void CrossbpwFire(Transform firePoint, Vector2 direction, float damageMultiplier)
     {
         Bullet b = GameObject.Instantiate(bullet);
         b.transform.position = firePoint.position;
         b.SetDirection(direction);
+        b.damageMultiplier = damageMultiplier;
     }
 }

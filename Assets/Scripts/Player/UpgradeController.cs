@@ -9,6 +9,12 @@ public class UpgradeController : MonoBehaviour
 
     Dictionary<UpgradeEnum, int> _existedUpgrades = new Dictionary<UpgradeEnum, int>();
 
+    public float damageMultiplier = 1f;
+    public float speedMultiploer = 1f;
+    public float ammoCapacityMultiplier = 1f;
+    public float reloadSpeedMultiplier = 1f;
+    public float fireRateMultiplier = 1f;
+
     // Start is called before the first frame update
     void Start() 
     {
@@ -51,12 +57,16 @@ public class UpgradeController : MonoBehaviour
         switch (type)
         {
             case UpgradeEnum.attack:
+                damageMultiplier *= 1.2f;
                 break;
             case UpgradeEnum.ammo:
+                ammoCapacityMultiplier *= 1.2f;
                 break;
             case UpgradeEnum.reload:
+                reloadSpeedMultiplier *= 1.2f;
                 break;
             case UpgradeEnum.fire_rate:
+                fireRateMultiplier *= 1.2f;
                 break;
             case UpgradeEnum.energy_consumption:
                 break;
@@ -69,6 +79,7 @@ public class UpgradeController : MonoBehaviour
             case UpgradeEnum.missile_attachment:
                 break;
             case UpgradeEnum.speed:
+                speedMultiploer *= 1.2f;
                 break;
             case UpgradeEnum.health:
                 break;

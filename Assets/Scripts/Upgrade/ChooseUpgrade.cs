@@ -77,8 +77,9 @@ public class ChooseUpgrade : MonoBehaviour
             _playerUpgradeController.Upgrade(type);
             DisableNotSelectedButton(button);
             _selectedUpgradeButton = button.gameObject;
-            StartCoroutine(DisableSelectedButtonAfterSeconds());
+            StartCoroutine("DisableSelectedButtonAfterSeconds");
             _chooseUpgradeSlider.gameObject.SetActive(false);
+            _isChoosingUpgrade = false;
         };
     }
 

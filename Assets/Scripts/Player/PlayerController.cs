@@ -83,14 +83,15 @@ public class PlayerController : MonoBehaviour
 
         _playerAnimation.RestoreAnimator();
 
-        if (!Input.GetKey(KeyCode.W))
-        {
-            Move();
-        }
-        else
-        {
-            _rb.velocity = new Vector2(0, _rb.velocity.y);
-        }
+        Move();
+        //if (!Input.GetKey(KeyCode.W))
+        //{
+        //    Move();
+        //}
+        //else
+        //{
+        //    _rb.velocity = new Vector2(0, _rb.velocity.y);
+        //}
         CheckActivateBall();
     }
 
@@ -101,6 +102,16 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _speedScale = 2;
+            _rb.gravityScale = 0;
+        }
+        else
+        {
+            _speedScale = 1;
+            _rb.gravityScale = 5;
+        }
         /* dash */
         _canStand = canStand();
         if (_dashRechargeCounter > 0)
@@ -138,9 +149,14 @@ public class PlayerController : MonoBehaviour
         bool grounded = IsGrounded();
         Vector2 velocity = _rb.velocity;
         float horizontal = Input.GetAxisRaw("Horizontal") * (_invertedControl ? -1 : 1);
+        float vertical = Input.GetAxisRaw("Vertical") * (_invertedControl ? -1 : 1);
         if (_ball.activeSelf)
         {
             velocity.x = horizontal * _moveSpeed * _ballSpeedMultiplier;
+            if (vertical != 0)
+            {
+                velocity.y = vertical * _moveSpeed * _speedScale;
+            }
         }
         else
         {
@@ -155,12 +171,20 @@ public class PlayerController : MonoBehaviour
             if (_canStop)
             {
                 velocity.x = horizontal * _moveSpeed * _speedScale;
+                if (vertical != 0 || Input.GetKey(KeyCode.LeftShift))
+                {
+                    velocity.y = vertical * _moveSpeed * _speedScale;
+                }
             }
             else {
-                if (horizontal != 0)
+                if (horizontal != 0 || Input.GetKey(KeyCode.LeftShift))
                 {
                     _audioSource.enabled = true;
                     velocity.x = horizontal * _moveSpeed * _speedScale;
+                    if (vertical != 0 || Input.GetKey(KeyCode.LeftShift))
+                    {
+                        velocity.y = vertical * _moveSpeed * _speedScale;
+                    }
                 }
                 else
                 {

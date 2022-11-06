@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] int _penetrateAmount = 1;
     [SerializeField] int _groundLayer;
 
+    public float damageMultiplier = 1f;
     public bool canFly = true;
 
     ObjectPool<Bullet> _pool;
@@ -22,7 +23,7 @@ public class Bullet : MonoBehaviour
     Vector3 _direction;
     Vector2 _moveDir = Vector2.right;
 
-        public void SetObjectPool(ObjectPool<Bullet> pool)
+    public void SetObjectPool(ObjectPool<Bullet> pool)
     {
         _pool = pool;
     }
@@ -59,12 +60,7 @@ public class Bullet : MonoBehaviour
     {
         if(other.tag == "Enemy")
         {
-            other.GetComponent<EnemyHealthController>()?.Damage(_damageAmount); 
-            _penetrateCount++;
-        }
-        if (other.tag == "Boss")
-        {
-            other.GetComponentInParent<BossHealthController>().TakeDamage(_damageAmount);
+            other.GetComponent<EnemyHealthController>()?.Damage(_damageAmount * damageMultiplier); 
             _penetrateCount++;
         }
         //_pool.Enqueue(this);

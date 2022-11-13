@@ -4,17 +4,31 @@ using UnityEngine;
 
 public enum UpgradeEnum
 {
-    attack,
-    ammo,
-    reload,
-    fire_rate,
-    energy_consumption,
+    attack1,
+    attack2,
+    attack3,
+    ammo1,
+    ammo2,
+    ammo3,
+    reload1,
+    reload2,
+    reload3,
+    fire_rate1,
+    fire_rate2,
+    fire_rate3,
+    energy_consumption1,
+    energy_consumption2,
+    energy_consumption3,
     mecha,
     backpack,
     battery,
     missile_attachment,
-    speed,
-    health,
+    speed1,
+    speed2,
+    speed3,
+    health1,
+    health2,
+    health3,
     ap_bullet, //increase penetration, can hit more enemy in line
     explosive_bullet, //area damage, knockback
 }

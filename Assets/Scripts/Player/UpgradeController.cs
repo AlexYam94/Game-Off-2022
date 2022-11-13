@@ -14,11 +14,15 @@ public class UpgradeController : MonoBehaviour
     public float ammoCapacityMultiplier = 1f;
     public float reloadSpeedMultiplier = 1f;
     public float fireRateMultiplier = 1f;
+    public float energyConsumptionMultiplier = 1f;
+    PlayerController _playerController;
+    WeaponController _weaponController;
+    PlayerHealthController _playerHealthController;
 
     // Start is called before the first frame update
     void Start() 
     {
-        
+        _playerController = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -39,15 +43,19 @@ public class UpgradeController : MonoBehaviour
                 }
             }
         }
-        foreach(var e in _uniqueUpgrades)
+        //foreach(var e in _uniqueUpgrades)
+        //{
+        //    if(e == type)
+        //    {
+        //        if (_existedUpgrades.ContainsKey(type))
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //}
+        if (_existedUpgrades.ContainsKey(type))
         {
-            if(e == type)
-            {
-                if (_existedUpgrades.ContainsKey(type))
-                {
-                    return false;
-                }
-            }
+            return false;
         }
         return true;
     }
@@ -56,37 +64,62 @@ public class UpgradeController : MonoBehaviour
     {
         switch (type)
         {
-            case UpgradeEnum.attack:
+            case UpgradeEnum.attack1:
+            case UpgradeEnum.attack2:
+            case UpgradeEnum.attack3:
                 damageMultiplier *= 1.2f;
                 break;
-            case UpgradeEnum.ammo:
+            case UpgradeEnum.ammo1:
+            case UpgradeEnum.ammo2:
+            case UpgradeEnum.ammo3:
                 ammoCapacityMultiplier *= 1.2f;
                 break;
-            case UpgradeEnum.reload:
+            case UpgradeEnum.reload1:
+            case UpgradeEnum.reload2:
+            case UpgradeEnum.reload3:
                 reloadSpeedMultiplier *= 1.2f;
                 break;
-            case UpgradeEnum.fire_rate:
+            case UpgradeEnum.fire_rate1:
+            case UpgradeEnum.fire_rate2:
+            case UpgradeEnum.fire_rate3:
                 fireRateMultiplier *= 1.2f;
                 break;
-            case UpgradeEnum.energy_consumption:
+            case UpgradeEnum.energy_consumption1:
+            case UpgradeEnum.energy_consumption2:
+            case UpgradeEnum.energy_consumption3:
+                energyConsumptionMultiplier *= 1.2f;
                 break;
             case UpgradeEnum.mecha:
+                _weaponController.SpawnMechaAtPlayerPosition();
                 break;
             case UpgradeEnum.backpack:
+                _weaponController.EnableMechaBackpack();
                 break;
             case UpgradeEnum.battery:
+                _playerController.batteryCapacity *= 1.5f;
                 break;
             case UpgradeEnum.missile_attachment:
+                _weaponController.EnableMissleAttachment();
                 break;
-            case UpgradeEnum.speed:
+            case UpgradeEnum.speed1:
+            case UpgradeEnum.speed2:
+            case UpgradeEnum.speed3:
                 speedMultiploer *= 1.2f;
                 break;
-            case UpgradeEnum.health:
+            case UpgradeEnum.health1:
+            case UpgradeEnum.health2:
+            case UpgradeEnum.health3:
+                _playerHealthController.SetHealthScale(1.2f);
                 break;
             case UpgradeEnum.ap_bullet:
+                _weaponController.SwitchToAPBullet();
                 break;
             case UpgradeEnum.explosive_bullet:
+                _weaponController.SwitchToExplosiveBullet();
+                break;
+            default:
                 break;
         }
+        _existedUpgrades.Add(type, 1);
     }
 }

@@ -7,5 +7,6 @@ public class Upgrade : ScriptableObject
 {
     public UpgradeEnum upgradeType;
     public Sprite upgradeIcon;
+    public string title;
     public string description;
 }

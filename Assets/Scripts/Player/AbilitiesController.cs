@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class AbilitiesController : MonoBehaviour
 {
-    public bool canDoubleJump { get; set; } = true;
-    public bool canDash { get; set; } = true;
-    public bool canBecomeBall { get; set; } = false;
-    public bool canDropBomb { get; set; } = false;
+    public bool canDoubleJump  = true;
+    public bool canDash  = true;
+    public bool canBecomeBall  = false;
+    public bool canDropBomb  = false;
 
     public void UnlockAbility(AbilityEnum abilitiyToUnlock)
     {

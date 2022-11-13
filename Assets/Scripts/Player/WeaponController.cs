@@ -7,55 +7,56 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] Weapon[] _weapons;
-    [SerializeField] float _loopTime = 10f;
     [SerializeField] SpriteRenderer _armSprite;
-    [SerializeField] TextMeshProUGUI _text;
 
     FireController _fireController;
-    float _loopCounter;
-    Weapon _lastWeapon;
-    float _timer = 1f;
+
+    //Control sub weapon
+    //Control is mecha
+    //Control main weapon type
 
 
     // Start is called before the first frame update
     void Start()
     {
         _fireController = GetComponent<FireController>();
-        _lastWeapon = _fireController._currentWeapon;
-        _loopCounter = _loopTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        _loopCounter -= Time.deltaTime;
-        _text.text = "" + Mathf.Ceil(_loopCounter);
-        if (_loopCounter < 0)
-        {
-            _loopCounter = _loopTime;
-            Weapon nextWeapon = GetRandomWeapon();
-            _lastWeapon = nextWeapon;
-            _fireController.ChangeWeapon(nextWeapon);
-            _armSprite.sprite = nextWeapon.weaponSprite;
-            GetComponent<PlayerHealthController>()?.GetHealth(-1);
-        }
-        if (_timer < 0)
-        {
-            _timer = 1f;
-            ScoreController.GetInstance().Add(1);
-        }
-        _timer -= Time.deltaTime;
     }
 
-    private Weapon GetRandomWeapon()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        System.Random random = new System.Random();
-        Weapon nextWeapon;
-        do
+        if(collision.gameObject.tag == "Mecha")
         {
-            nextWeapon = _weapons[random.Next(0, _weapons.Length)];
-        } while (nextWeapon.type == _lastWeapon.type);
-        _lastWeapon = nextWeapon;
-        return nextWeapon;
+            //Enable ride mecha button
+        }
+    }
+
+    internal void EnableMissleAttachment()
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void SwitchToAPBullet()
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void SwitchToExplosiveBullet()
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void SpawnMechaAtPlayerPosition()
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void EnableMechaBackpack()
+    {
+        throw new NotImplementedException();
     }
 }

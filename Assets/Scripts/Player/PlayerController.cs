@@ -44,6 +44,11 @@ public class PlayerController : MonoBehaviour
     private bool _isVisible = true;
     AudioSource _audioSource;
 
+    public float batteryCapacity = 100f;
+    public bool isInMecha = false;
+
+    public float gravityScale = 50f;
+
     private void Start()
     {
         ScoreController.GetInstance()?.ResetScore();
@@ -83,7 +88,14 @@ public class PlayerController : MonoBehaviour
 
         _playerAnimation.RestoreAnimator();
 
-        Move();
+        if (!isInMecha)
+        {
+            Move();
+        }
+        else
+        {
+            MechaMove();
+        }
         //if (!Input.GetKey(KeyCode.W))
         //{
         //    Move();
@@ -92,7 +104,6 @@ public class PlayerController : MonoBehaviour
         //{
         //    _rb.velocity = new Vector2(0, _rb.velocity.y);
         //}
-        CheckActivateBall();
     }
 
     private void FixedUpdate()
@@ -100,17 +111,25 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void Move()
+    private void MechaMove()
     {
+        bool isFlying = false;
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            _speedScale = 2;
+            isFlying = true;
+            _speedScale = 3;
+            _rb.gravityScale = 0;
+        }
+        else if (Input.GetKey(KeyCode.Space))
+        {
+            isFlying = true;
+            _speedScale = 1;
             _rb.gravityScale = 0;
         }
         else
         {
             _speedScale = 1;
-            _rb.gravityScale = 5;
+            _rb.gravityScale = gravityScale;
         }
         /* dash */
         _canStand = canStand();
@@ -120,7 +139,7 @@ public class PlayerController : MonoBehaviour
         }
         //else if (_abilitiesController.canDash && Input.GetButtonDown("Fire2") && _canStand)
         else if (_abilitiesController.canDash && Input.GetKeyDown(KeyCode.Mouse1) && _canStand)
-                {
+        {
             _dashCounter = _dashTime;
             _dashRechargeCounter = _waitAfterDashing;
             if (_isVisible)
@@ -150,13 +169,119 @@ public class PlayerController : MonoBehaviour
         Vector2 velocity = _rb.velocity;
         float horizontal = Input.GetAxisRaw("Horizontal") * (_invertedControl ? -1 : 1);
         float vertical = Input.GetAxisRaw("Vertical") * (_invertedControl ? -1 : 1);
+        if (horizontal != 0 && grounded && !isFlying)
+        {
+            _audioSource.enabled = true;
+        }
+        else
+        {
+            _audioSource.enabled = false;
+        }
+        if (_canStop)
+        {
+            if(horizontal!=0)
+                velocity.x = horizontal * _moveSpeed * _speedScale;
+            if (vertical != 0 && isFlying)
+                velocity.y = vertical * _moveSpeed * _speedScale;
+        }
+        else
+        {
+            if (horizontal != 0 || Input.GetKey(KeyCode.LeftShift))
+            {
+                if(!isFlying)
+                    _audioSource.enabled = true;
+                if (horizontal != 0)
+                    velocity.x = horizontal * _moveSpeed * _speedScale;
+                if (vertical != 0 && isFlying)
+                    velocity.y = vertical * _moveSpeed * _speedScale;
+                
+            }
+            else
+            {
+                _audioSource.enabled = false;
+            }
+        }
+
+        _playerAnimation.Move(horizontal);
+
+        if (!grounded)
+        {
+            _coyoteCounter -= Time.deltaTime;
+            _playerAnimation.SetCoyote(true);
+        }
+        else
+        {
+            _coyoteCounter = _coyoteTime;
+            _playerAnimation.SetCoyote(false);
+        }
+
+        // Jump
+        if ((_coyoteCounter > 0) && Input.GetButtonDown("Jump"))
+        {
+            velocity.y = _jumpForce * _jumpForceScale;
+
+            _playerAnimation.Jump(!grounded);
+            //if (grounded)
+            if (grounded || _coyoteCounter > 0)
+            {
+                _coyoteCounter = 0;
+                //StartCoroutine("ResetJump");
+            }
+        }
+
+        _rb.velocity = velocity;
+    }
+
+    private void Move()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _speedScale = 2;
+        }
+        else
+        {
+            _speedScale = 1;
+        }
+        /* dash */
+        _canStand = canStand();
+        if (_dashRechargeCounter > 0)
+        {
+            _dashRechargeCounter = Mathf.Max(_dashRechargeCounter - Time.deltaTime, 0);
+        }
+        //else if (_abilitiesController.canDash && Input.GetButtonDown("Fire2") && _canStand)
+        else if (_abilitiesController.canDash && Input.GetKeyDown(KeyCode.LeftShift) && _canStand)
+        {
+            _dashCounter = _dashTime;
+            _dashRechargeCounter = _waitAfterDashing;
+            //if (_isVisible)
+            //{
+            //    _playerEffectController.ShowAfterImage(_playerSprite);
+            //}
+            SwitchToStanding();
+        }
+
+        if (_dashCounter > 0)
+        {
+            _dashCounter -= Time.deltaTime;
+            _rb.velocity = new Vector2(_dashSpeed * transform.localScale.x, 0);
+            _playerEffectController.CountDown(Time.deltaTime);
+            if (_playerEffectController.GetAfterImageCounter() <= 0)
+            {
+                if (_isVisible)
+                {
+                    _playerEffectController.ShowAfterImage(_playerSprite);
+                }
+            }
+            return;
+        }
+        /* dash */
+
+        bool grounded = IsGrounded();
+        Vector2 velocity = _rb.velocity;
+        float horizontal = Input.GetAxisRaw("Horizontal") * (_invertedControl ? -1 : 1);
         if (_ball.activeSelf)
         {
             velocity.x = horizontal * _moveSpeed * _ballSpeedMultiplier;
-            if (vertical != 0)
-            {
-                velocity.y = vertical * _moveSpeed * _speedScale;
-            }
         }
         else
         {
@@ -171,20 +296,13 @@ public class PlayerController : MonoBehaviour
             if (_canStop)
             {
                 velocity.x = horizontal * _moveSpeed * _speedScale;
-                if (vertical != 0 || Input.GetKey(KeyCode.LeftShift))
-                {
-                    velocity.y = vertical * _moveSpeed * _speedScale;
-                }
             }
-            else {
+            else
+            {
                 if (horizontal != 0 || Input.GetKey(KeyCode.LeftShift))
                 {
                     _audioSource.enabled = true;
                     velocity.x = horizontal * _moveSpeed * _speedScale;
-                    if (vertical != 0 || Input.GetKey(KeyCode.LeftShift))
-                    {
-                        velocity.y = vertical * _moveSpeed * _speedScale;
-                    }
                 }
                 else
                 {
@@ -204,13 +322,13 @@ public class PlayerController : MonoBehaviour
             _coyoteCounter = _coyoteTime;
             _playerAnimation.SetCoyote(false);
         }
-//if (_coyoteCounter > 0)
-//{
-//    _canDoubleJump = false;
-//        }
+        //if (_coyoteCounter > 0)
+        //{
+        //    _canDoubleJump = false;
+        //        }
 
         // Jump
-        if (( (_abilitiesController.canDoubleJump && _canDoubleJump) || (_coyoteCounter>0)) && Input.GetButtonDown("Jump"))
+        if (((_abilitiesController.canDoubleJump && _canDoubleJump) || (_coyoteCounter > 0)) && Input.GetButtonDown("Jump"))
         {
             if (_ball.activeSelf)
             {
@@ -221,9 +339,9 @@ public class PlayerController : MonoBehaviour
                 velocity.y = _jumpForce * _jumpForceScale;
             }
 
-            _playerAnimation.Jump(!grounded); 
+            _playerAnimation.Jump(!grounded);
             //if (grounded)
-            if (grounded ||  _coyoteCounter > 0)
+            if (grounded || _coyoteCounter > 0)
             {
                 _coyoteCounter = 0;
                 //StartCoroutine("ResetJump");
@@ -238,30 +356,6 @@ public class PlayerController : MonoBehaviour
         }
 
         _rb.velocity = velocity;
-    }
-
-    private void CheckActivateBall()
-    {
-        if (!_abilitiesController.canBecomeBall) return;
-        if (!_ball.activeSelf)
-        {
-            if (Input.GetAxisRaw("Vertical") < -.9f)
-            {
-                _ballCounter = Mathf.Max(_ballCounter - Time.deltaTime, 0);
-                if (_ballCounter <= 0)
-                {
-                    SwitchToBall();
-                }
-            }
-            else
-            {
-                _ballCounter = _waitToBall;
-            }
-
-        }
-        else if (Input.GetAxisRaw("Vertical") > .9f && _canStand){
-            SwitchToStanding();
-        }
     }
 
     private void Flip(bool facingRight)

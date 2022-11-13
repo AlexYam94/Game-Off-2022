@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3af6d1de3449994988ecb6607f9186c, type: 3}
-  m_Name: Battery
+  m_Name: Atttack 3
   m_EditorClassIdentifier: 
-  upgradeType: 17
-  upgradeIcon: {fileID: 21300000, guid: f47213af7e996497b96c4b5df3e6b613, type: 3}
+  upgradeType: 2
+  upgradeIcon: {fileID: 0}
   title: 
-  description: Increase battery capacity by 20%
+  description: 

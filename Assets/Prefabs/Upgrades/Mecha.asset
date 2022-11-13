@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3af6d1de3449994988ecb6607f9186c, type: 3}
   m_Name: Mecha
   m_EditorClassIdentifier: 
-  upgradeType: 5
+  upgradeType: 15
   upgradeIcon: {fileID: 21300000, guid: 0ccc508108fa6ed4fa11b4a467d7f609, type: 3}
+  title: 
   description: Deploy a Multi Terrain Debugger (Damage increase by 200%, Speed increase
     by 100%, unlock energy bar, energy shield and new upgrades)

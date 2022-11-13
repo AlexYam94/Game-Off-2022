@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3af6d1de3449994988ecb6607f9186c, type: 3}
-  m_Name: Ammo
+  m_Name: Speed 3
   m_EditorClassIdentifier: 
-  upgradeType: 1
-  upgradeIcon: {fileID: 21300000, guid: b52d5fe7beb6a7346a451621ea02a69d, type: 3}
-  description: Increase ammo capacity by 20%
+  upgradeType: 21
+  upgradeIcon: {fileID: 21300000, guid: 1223ca7d04e5a4ad08a8d648c4e2a09e, type: 3}
+  title: 
+  description: Increase speed by 20%

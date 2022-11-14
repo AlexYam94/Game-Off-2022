@@ -23,6 +23,7 @@ public class UpgradeController : MonoBehaviour
     void Start() 
     {
         _playerController = GetComponent<PlayerController>();
+        _playerHealthController = GetComponent<PlayerHealthController>();
     }
 
     // Update is called once per frame

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &635130509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 635130510}
+  m_Layer: 12
+  m_Name: GroundDetectStartPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &635130510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635130509}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.78, y: 2.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 661074151926445436}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &661074150657713272
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150657713273}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front right leg joint bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150674166804}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front left front leg bone_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661074150702336669}
   - component: {fileID: 661074150702336666}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back Right leg LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +118,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074150702336668}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.810778, w: 0.58535385}
   m_LocalPosition: {x: -13.48, y: 11.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -95,7 +126,7 @@ Transform:
   - {fileID: 661074152670590749}
   m_Father: {fileID: 661074151022089932}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -108.344}
 --- !u!114 &661074150702336666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150738678353}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back body right leg bone_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150739119754}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back Body Bone_81
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150745982900}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back left front leg bone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +246,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074150745982903}
-  m_LocalRotation: {x: 0, y: 0, z: 0.08761482, w: 0.9961544}
+  m_LocalRotation: {x: 0, y: 0, z: -0.043258607, w: 0.9990639}
   m_LocalPosition: {x: 3.0803967, y: -0.033541698, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -233,7 +264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150751092808}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back body right leg bone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150758346335}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back left back leg bone_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +310,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074150758346334}
-  m_LocalRotation: {x: 0, y: 0, z: 0.0068226554, w: 0.9999768}
+  m_LocalRotation: {x: 0, y: 0, z: 0.0068229367, w: 0.9999767}
   m_LocalPosition: {x: 2.7575693, y: -0.00000076916587, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -297,7 +328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150792774956}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back body right leg bone_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +342,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074150792774959}
-  m_LocalRotation: {x: -0, y: -0, z: 0.12573168, w: 0.9920643}
+  m_LocalRotation: {x: -0, y: -0, z: -0.02745431, w: 0.9996231}
   m_LocalPosition: {x: 2.9443827, y: -0.00000053198255, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -319,7 +350,7 @@ Transform:
   - {fileID: 661074150738678353}
   m_Father: {fileID: 661074152270876267}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 14.446}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3.146}
 --- !u!1 &661074150812002702
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150812002703}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back Body Bone_82
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +395,7 @@ GameObject:
   - component: {fileID: 661074150813897223}
   - component: {fileID: 661074150813897221}
   - component: {fileID: 661074150813897218}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -471,7 +502,7 @@ MonoBehaviour:
   - color: {r: 0, g: 1, b: 0, a: 1}
     showGizmo: 1
   - color: {r: 0, g: 1, b: 0, a: 1}
-    showGizmo: 0
+    showGizmo: 1
   - color: {r: 0, g: 1, b: 0, a: 1}
     showGizmo: 1
   - color: {r: 0, g: 1, b: 0, a: 1}
@@ -581,8 +612,8 @@ MonoBehaviour:
   - {fileID: 661074152070832400}
   - {fileID: 661074152523886635}
   m_Bounds:
-    m_Center: {x: -0.6416521, y: 8.535501, z: 0}
-    m_Extent: {x: 12.641984, y: 5.912822, z: 0}
+    m_Center: {x: -5.2768307, y: 8.497927, z: 0}
+    m_Extent: {x: 21.286621, y: 5.97143, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -595,7 +626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150837637824}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back body right leg bone_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,7 +640,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074150837637827}
-  m_LocalRotation: {x: 0, y: 0, z: -0.07082215, w: 0.997489}
+  m_LocalRotation: {x: 0, y: 0, z: 0.09557891, w: 0.9954219}
   m_LocalPosition: {x: 3.333315, y: -0.0000010675219, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -627,7 +658,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150838602759}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle left back leg bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +672,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074150838602758}
-  m_LocalRotation: {x: 0, y: 0, z: 0.9900483, w: 0.14072794}
+  m_LocalRotation: {x: 0, y: 0, z: 0.9900483, w: 0.14072804}
   m_LocalPosition: {x: -0.21045914, y: 0.2959666, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -659,7 +690,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150849005211}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front right back leg bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -691,7 +722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150851698017}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back Body Bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +754,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150884927853}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle left front leg bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -737,7 +768,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074150884927852}
-  m_LocalRotation: {x: -0, y: -0, z: -0.97555155, w: -0.21977109}
+  m_LocalRotation: {x: -0, y: -0, z: -0.9755515, w: -0.21977113}
   m_LocalPosition: {x: 2.2946553, y: 0.11862688, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -755,7 +786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150912386420}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front right front leg bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -769,7 +800,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074150912386423}
-  m_LocalRotation: {x: 0, y: -0, z: -0.03166039, w: -0.9994987}
+  m_LocalRotation: {x: 0, y: -0, z: -0.031660635, w: -0.99949867}
   m_LocalPosition: {x: 3.9626799, y: 0.25129795, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -787,7 +818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150930632209}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back Left Leg LimbSolver2D_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -802,7 +833,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074150930632208}
   m_LocalRotation: {x: -0, y: -0, z: 0.35797432, w: -0.9337315}
-  m_LocalPosition: {x: -0.41911793, y: -1.6051044, z: 0}
+  m_LocalPosition: {x: 0.3860476, y: 0.46345264, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -818,7 +849,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074150963729481}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back body right leg bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -832,7 +863,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074150963729480}
-  m_LocalRotation: {x: -0, y: -0, z: 0.9941906, w: -0.107634425}
+  m_LocalRotation: {x: -0, y: -0, z: 0.9939944, w: -0.10943119}
   m_LocalPosition: {x: -0.091864005, y: 0.05064263, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -840,7 +871,7 @@ Transform:
   - {fileID: 661074150751092808}
   m_Father: {fileID: 661074151193609659}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 192.358}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 192.565}
 --- !u!1 &661074150994220117
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661074150994220114}
   - component: {fileID: 661074150994220115}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front right front leg LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -865,7 +896,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074150994220117}
-  m_LocalRotation: {x: -0, y: -0, z: -0.14929141, w: 0.9887933}
+  m_LocalRotation: {x: -0, y: -0, z: 0.28512764, w: 0.9584896}
   m_LocalPosition: {x: 11.159996, y: 11.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -873,7 +904,7 @@ Transform:
   - {fileID: 661074152249200764}
   m_Father: {fileID: 661074151022089932}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -17.172}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 33.133}
 --- !u!114 &661074150994220115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,7 +946,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151000109124}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front left leg joint bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151000625961}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle left front leg bone_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -978,7 +1009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151022089932}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Limb Solvers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1017,7 +1048,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151059389497}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back left front leg bone_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1031,7 +1062,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151059389496}
-  m_LocalRotation: {x: 0, y: 0, z: -0.0141933365, w: 0.99989927}
+  m_LocalRotation: {x: 0, y: 0, z: -0.014193318, w: 0.99989927}
   m_LocalPosition: {x: 2.8871055, y: -0.0819799, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1049,7 +1080,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151109643432}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front right front leg bone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1063,7 +1094,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151109643435}
-  m_LocalRotation: {x: 0, y: 0, z: -0.077640556, w: 0.99698144}
+  m_LocalRotation: {x: -0, y: -0, z: -0.16342932, w: 0.9865551}
   m_LocalPosition: {x: 1.9344532, y: 0.00000079292533, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1071,7 +1102,7 @@ Transform:
   - {fileID: 661074151794985125}
   m_Father: {fileID: 661074152435652635}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -18.812}
 --- !u!1 &661074151146778982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,7 +1112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151146778983}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: New LimbSolver2D_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1112,7 +1143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151156016889}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle left front leg bone_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1144,7 +1175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151191537649}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front left front leg bone_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1176,7 +1207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151193609659}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back right leg joint bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1209,7 +1240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661074151193675908}
   - component: {fileID: 661074151193675909}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back left foot LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1273,7 +1304,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151241369416}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle left front leg bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1305,7 +1336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151375843241}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back Body Bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1337,7 +1368,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151449813503}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front right front leg bone_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1351,14 +1382,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151449813502}
-  m_LocalRotation: {x: 0, y: 0, z: -0.10200458, w: 0.99478394}
+  m_LocalRotation: {x: -0, y: -0, z: -0.19848049, w: 0.98010486}
   m_LocalPosition: {x: 1.9179184, y: 0.0000030090605, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 661074151794985125}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -22.896}
 --- !u!1 &661074151454577168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,7 +1399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151454577169}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front right middle leg bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1382,7 +1413,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151454577168}
-  m_LocalRotation: {x: 0, y: 0, z: -0.5844847, w: -0.8114048}
+  m_LocalRotation: {x: 0, y: 0, z: -0.52986956, w: -0.84807914}
   m_LocalPosition: {x: 3.355628, y: -0.14890477, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1400,7 +1431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151557004611}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: New LimbSolver2D (1)_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1431,7 +1462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151560150118}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle right back leg bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1445,7 +1476,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151560150121}
-  m_LocalRotation: {x: 0, y: 0, z: 0.06336682, w: 0.99799037}
+  m_LocalRotation: {x: 0, y: 0, z: 0.063368686, w: 0.9979902}
   m_LocalPosition: {x: 0.3481846, y: -0.19297034, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1463,7 +1494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151575525836}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back right foot LimbSolver2D_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1478,7 +1509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151575525839}
   m_LocalRotation: {x: -0, y: -0, z: 0.957585, w: -0.28815097}
-  m_LocalPosition: {x: -0.21875143, y: 1.6624992, z: 0}
+  m_LocalPosition: {x: -21.73902, y: 0.29798388, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1494,7 +1525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151595906838}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back left front leg bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1508,7 +1539,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151595906841}
-  m_LocalRotation: {x: -0, y: -0, z: 0.9656036, w: 0.26001894}
+  m_LocalRotation: {x: -0, y: -0, z: 0.38217312, w: 0.9240908}
   m_LocalPosition: {x: 2.591031, y: -0.03535854, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1526,7 +1557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151624763686}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle right front leg bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1558,7 +1589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151638216551}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front left back leg bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1590,7 +1621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151661009728}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: New LimbSolver2D_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1605,7 +1636,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151661009731}
   m_LocalRotation: {x: -0, y: -0, z: -0.65020716, w: 0.7597569}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.05, y: 0.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1621,7 +1652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151686779425}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back body right leg bone_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1653,7 +1684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151695839721}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back Body Bone_80
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1685,7 +1716,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151730798185}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back body right leg bone_13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1717,7 +1748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661074151752255836}
   - component: {fileID: 661074151752255837}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mid right leg LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1781,7 +1812,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151769642178}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle left back leg bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1795,7 +1826,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151769642181}
-  m_LocalRotation: {x: 0, y: 0, z: -0.025822764, w: 0.9996665}
+  m_LocalRotation: {x: 0, y: 0, z: -0.02582259, w: 0.9996665}
   m_LocalPosition: {x: 2.9722562, y: 0.00000015303785, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1813,7 +1844,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151794985125}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front right front leg bone_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1827,7 +1858,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151794985124}
-  m_LocalRotation: {x: 0, y: 0, z: 0.026347402, w: 0.99965286}
+  m_LocalRotation: {x: -0, y: -0, z: -0.05818809, w: 0.9983057}
   m_LocalPosition: {x: 1.8320005, y: -0.000000037843186, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1835,7 +1866,7 @@ Transform:
   - {fileID: 661074151449813503}
   m_Father: {fileID: 661074151109643432}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -6.672}
 --- !u!1 &661074151845619935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,7 +1876,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151845619932}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle left front leg bone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1877,7 +1908,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151855485647}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle left leg joint bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1909,7 +1940,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151884957297}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Head Body Bone_87
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1923,14 +1954,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151884957296}
-  m_LocalRotation: {x: 0, y: 0, z: -0.08345315, w: 0.99651176}
+  m_LocalRotation: {x: 0, y: 0, z: 0.098050795, w: 0.9951814}
   m_LocalPosition: {x: 1.8468689, y: 0.00000059968744, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 661074152461018824}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 11.254}
 --- !u!1 &661074151886338138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,7 +1971,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151886338139}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back left foot LimbSolver2D_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1955,7 +1986,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151886338138}
   m_LocalRotation: {x: -0, y: -0, z: 0.95159787, w: -0.3073459}
-  m_LocalPosition: {x: 0.57578826, y: -0.47570562, z: 0}
+  m_LocalPosition: {x: -20.686789, y: 3.0269608, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1971,7 +2002,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151903172125}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front left front leg bone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2003,7 +2034,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151906230014}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back left back leg bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2017,7 +2048,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151906229953}
-  m_LocalRotation: {x: -0, y: -0, z: 0.9998895, w: -0.014870493}
+  m_LocalRotation: {x: -0, y: -0, z: 0.9997758, w: 0.021171926}
   m_LocalPosition: {x: -0.066204995, y: 0.36699528, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2025,7 +2056,7 @@ Transform:
   - {fileID: 661074152523886635}
   m_Father: {fileID: 661074152778549779}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 181.704}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 177.574}
 --- !u!1 &661074151926445439
 GameObject:
   m_ObjectHideFlags: 0
@@ -2035,9 +2066,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151926445436}
-  m_Layer: 0
+  - component: {fileID: 1608818403}
+  - component: {fileID: 1608818405}
+  - component: {fileID: 1608818404}
+  - component: {fileID: 1608818410}
+  - component: {fileID: 1608818409}
+  - component: {fileID: 1608818408}
+  - component: {fileID: 1608818407}
+  - component: {fileID: 1608818406}
+  m_Layer: 12
   m_Name: Warrior Bug
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2051,14 +2090,167 @@ Transform:
   m_GameObject: {fileID: 661074151926445439}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 64.6, y: -20.6, z: -0.1761069}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 661074150813897225}
   - {fileID: 661074151022089932}
+  - {fileID: 635130510}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1608818403
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661074151926445439}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9c41669fbb751f444bed4fe25733d4fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1608818405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661074151926445439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3943d0028cbcb8c479e989d8d4453dfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 5
+  _jumpRange: 20
+  _jumpChance: 0.3
+  _jumpUpwardForce: 25
+  _jumpForwardForce: 200
+  _groundDetectStartPosition: {fileID: 635130510}
+  _groundDetectDistance: 0.7
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _jumpCooldown: 1
+--- !u!114 &1608818404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661074151926445439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de4a31e9f79b070428dff2c6395de2b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _totalHealth: 20
+  _deathEffect: {fileID: 0}
+  _score: 0
+  _deathSound: {fileID: 0}
+--- !u!114 &1608818410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661074151926445439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562f0d38f1614bc42a71894bb3993c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageAmount: 1
+  _destroyEffect: {fileID: 0}
+  _destroyOnDamage: 0
+--- !u!114 &1608818409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661074151926445439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0127f8c607d26014291564f3d0615eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropRate: 0.3
+  itemsToDrop: []
+--- !u!114 &1608818408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661074151926445439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  m_ShapePathHash: 0
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -1284
+--- !u!50 &1608818407
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661074151926445439}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 5
+  m_LinearDrag: 0.5
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!70 &1608818406
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661074151926445439}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.31239605, y: 7.796112}
+  m_Size: {x: 28.65077, y: 9.563441}
+  m_Direction: 1
 --- !u!1 &661074151961775902
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,7 +2260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074151961775903}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle right front leg bone_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2100,7 +2292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152047017498}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle right leg joint bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2133,7 +2325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661074152053639904}
   - component: {fileID: 661074152053639905}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back right foot LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2197,7 +2389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152070832400}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back left back leg bone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2211,7 +2403,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152070832403}
-  m_LocalRotation: {x: 0, y: 0, z: 0.037801027, w: 0.99928534}
+  m_LocalRotation: {x: 0, y: 0, z: -0.0030374737, w: 0.9999954}
   m_LocalPosition: {x: 2.9566495, y: -0.000005042157, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2229,7 +2421,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152125985334}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle right back leg bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2243,7 +2435,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152125985337}
-  m_LocalRotation: {x: 0, y: 0, z: -0.26603642, w: 0.96396303}
+  m_LocalRotation: {x: 0, y: 0, z: -0.26603895, w: 0.9639623}
   m_LocalPosition: {x: 2.5454552, y: -0.0000058246865, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2261,7 +2453,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152128778650}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle right front leg bone_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2293,7 +2485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152200187288}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back left front leg bone_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2324,7 +2516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152216229028}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front left front leg bone_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2356,7 +2548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152225985712}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back body right leg bone_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2370,7 +2562,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152225985715}
-  m_LocalRotation: {x: 0, y: 0, z: 0.026928343, w: 0.99963737}
+  m_LocalRotation: {x: 0, y: 0, z: 0.026928391, w: 0.99963737}
   m_LocalPosition: {x: 2.5126214, y: 0.000001971202, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2388,7 +2580,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152249200764}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front right front leg LimbSolver2D_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2403,7 +2595,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152249200767}
   m_LocalRotation: {x: -0, y: -0, z: -0.53089124, w: 0.84744}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.0304105, y: -0.57270825, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2420,7 +2612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661074152266265543}
   - component: {fileID: 661074152266265540}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mid left leg LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2484,7 +2676,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152270876267}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back body right leg bone_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2498,7 +2690,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152270876266}
-  m_LocalRotation: {x: -0, y: -0, z: 0.96219075, w: 0.27237636}
+  m_LocalRotation: {x: -0, y: -0, z: 0.18005316, w: 0.98365694}
   m_LocalPosition: {x: 2.3921914, y: -0.128978, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2516,7 +2708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152291692082}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back left front leg bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2548,7 +2740,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152320356534}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back body right leg bone_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2562,7 +2754,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152320356537}
-  m_LocalRotation: {x: -0, y: -0, z: -0.8419275, w: 0.5395906}
+  m_LocalRotation: {x: -0, y: -0, z: -0.050613493, w: 0.9987184}
   m_LocalPosition: {x: 1.5406044, y: 0.00000030398684, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2580,7 +2772,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152329736128}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front left front leg bone_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2612,7 +2804,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152432120049}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front left middle leg bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2626,7 +2818,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152432120048}
-  m_LocalRotation: {x: 0, y: 0, z: 0.76497287, w: 0.6440626}
+  m_LocalRotation: {x: 0, y: 0, z: 0.740322, w: 0.6722525}
   m_LocalPosition: {x: 3.303067, y: 0.28313202, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2644,7 +2836,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152435652635}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front right front leg bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2658,7 +2850,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152435652634}
-  m_LocalRotation: {x: 0, y: -0, z: -0.91136605, w: 0.4115967}
+  m_LocalRotation: {x: 0, y: -0, z: -0.59863997, w: 0.8010182}
   m_LocalPosition: {x: 1.22807, y: -0.00000018670443, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2666,7 +2858,7 @@ Transform:
   - {fileID: 661074151109643432}
   m_Father: {fileID: 661074150912386420}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -52.394}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -124.815}
 --- !u!1 &661074152451798305
 GameObject:
   m_ObjectHideFlags: 0
@@ -2676,7 +2868,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152451798366}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back left front leg bone_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2690,7 +2882,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152451798305}
-  m_LocalRotation: {x: -0, y: -0, z: -0.8398472, w: 0.54282296}
+  m_LocalRotation: {x: -0, y: -0, z: 0.12616026, w: 0.9920099}
   m_LocalPosition: {x: 2.8346174, y: 0.0000007314053, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2708,7 +2900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152461018824}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Head Bone_86
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2740,7 +2932,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152523886635}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back left back leg bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2772,7 +2964,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152552870177}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back body right leg bone_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2786,7 +2978,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152552870176}
-  m_LocalRotation: {x: 0, y: 0, z: -0.010200105, w: 0.99994797}
+  m_LocalRotation: {x: 0, y: 0, z: 0.13814975, w: 0.99041134}
   m_LocalPosition: {x: 2.4336793, y: 0.000002243401, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2794,7 +2986,7 @@ Transform:
   - {fileID: 661074152769219924}
   m_Father: {fileID: 661074150738678353}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 144.322}
 --- !u!1 &661074152565002723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2804,7 +2996,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152565002720}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle right front leg bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2818,7 +3010,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152565002723}
-  m_LocalRotation: {x: -0, y: -0, z: -0.9774497, w: 0.21116862}
+  m_LocalRotation: {x: -0, y: -0, z: -0.9774495, w: 0.21116933}
   m_LocalPosition: {x: 2.2557058, y: -0.09698282, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2836,7 +3028,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152570022047}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front left front leg bone_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2850,7 +3042,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152570022046}
-  m_LocalRotation: {x: 0, y: 0, z: -0.2394657, w: 0.9709049}
+  m_LocalRotation: {x: 0, y: 0, z: 0.006438542, w: 0.99997926}
   m_LocalPosition: {x: 4.0530233, y: 0.05218649, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2868,7 +3060,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152609098638}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Middle right front leg bone_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2900,7 +3092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661074152630530032}
   - component: {fileID: 661074152630530033}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front left front leg LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2914,7 +3106,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152630530035}
-  m_LocalRotation: {x: -0, y: -0, z: -0.00014318108, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.2923695, w: 0.95630544}
   m_LocalPosition: {x: 10.809998, y: 12.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2922,7 +3114,7 @@ Transform:
   - {fileID: 661074151661009728}
   m_Father: {fileID: 661074151022089932}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.016}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 34}
 --- !u!114 &661074152630530033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2964,7 +3156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152658666503}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Front left front leg bone_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2978,7 +3170,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152658666502}
-  m_LocalRotation: {x: -0, y: -0, z: -0.82785654, w: 0.5609399}
+  m_LocalRotation: {x: -0, y: -0, z: -0.77658874, w: 0.630008}
   m_LocalPosition: {x: 1.2232926, y: 0.000000628949, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2997,7 +3189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661074152669617759}
   - component: {fileID: 661074152669617756}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back Left Leg LimbSolver2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3011,7 +3203,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152669617758}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.8373948, w: 0.5465985}
   m_LocalPosition: {x: -9.97, y: 14.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3019,7 +3211,7 @@ Transform:
   - {fileID: 661074150930632209}
   m_Father: {fileID: 661074151022089932}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -113.732}
 --- !u!114 &661074152669617756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3061,7 +3253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152670590749}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: New LimbSolver2D_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3076,7 +3268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152670590748}
   m_LocalRotation: {x: -0, y: -0, z: 0.37233314, w: -0.92809916}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.6716169, y: 0.81460965, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3092,7 +3284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152702892707}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mid Body Bone_85
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3124,7 +3316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152715680288}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mid Body Bone_83
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3156,7 +3348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152732139210}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Mid Body Bone_84
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3188,7 +3380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152769219924}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back body right leg bone_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3202,7 +3394,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074152769219927}
-  m_LocalRotation: {x: 0, y: 0, z: -0.0000008588684, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.0000015727139, w: 1}
   m_LocalPosition: {x: 2.5574834, y: 0.000002898315, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3220,7 +3412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 661074152778549779}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Back left leg joint bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

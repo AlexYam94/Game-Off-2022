@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _ballSpeedMultiplier = .8f;
     [SerializeField] CircleCollider2D _ballCollider;
     [SerializeField] float _coyoteTime = .3f;
+    [SerializeField] float _thrustSpeedMutiplier = 3f;
+    [SerializeField] AudioSource _footStepAudioSource;
+    [SerializeField] float _footStepDecayTime = .5f;
 
     private float _coyoteCounter;
     bool _resetJumpNeeded = false;
@@ -35,6 +38,7 @@ public class PlayerController : MonoBehaviour
     float _ballCounter;
     bool _canStand;
     AbilitiesController _abilitiesController;
+    ThrusterController _thrusterController;
     bool _canInput;
     Animation _anim;
     private float _speedScale = 1;
@@ -42,12 +46,15 @@ public class PlayerController : MonoBehaviour
     private bool _invertedControl = false;
     private bool _canStop = true;
     private bool _isVisible = true;
-    AudioSource _audioSource;
+    private float _footStepDecayCounter = 0f;
+    private bool _startFootstep = false;
 
     public float batteryCapacity = 100f;
     public bool isInMecha = false;
 
     public float gravityScale = 50f;
+    public bool canFly = true;
+    public bool isGrounded = true;
 
     private void Start()
     {
@@ -55,7 +62,7 @@ public class PlayerController : MonoBehaviour
         _playerAnimation = GetComponent<PlayerAnimation>();
         _fireController = GetComponent<FireController>();
         _playerEffectController = GetComponent<PlayerEffectController>();
-        SwitchToStanding();
+        //SwitchToStanding();
         _abilitiesController = GetComponent<AbilitiesController>();
         _canInput = true;
         _canStand = true;
@@ -63,11 +70,13 @@ public class PlayerController : MonoBehaviour
         _canStop = true;
         _coyoteCounter = _coyoteTime;
         _isVisible = true;
-        _audioSource = GetComponent<AudioSource>();
+        _footStepAudioSource = GetComponent<AudioSource>();
+        _thrusterController = GetComponent<ThrusterController>();
 }
 
     private void Update()
     {
+        handleFootStep();
         if (!_canInput)
         {
             _rb.velocity = new Vector2(0, -50);
@@ -110,26 +119,43 @@ public class PlayerController : MonoBehaviour
     {
     }
 
+    private void handleFootStep()
+    {
+        if (_startFootstep)
+        {
+            _footStepDecayCounter = Mathf.Clamp(Time.deltaTime + _footStepDecayCounter, 0, _footStepDecayTime);
+        }
+        else
+        {
+            _footStepDecayCounter = Mathf.Clamp(_footStepDecayCounter - Time.deltaTime, 0, _footStepDecayTime);
+
+        }
+        _footStepAudioSource.volume = _footStepDecayCounter / _footStepDecayTime;
+    }
+
 
     private void MechaMove()
     {
         bool isFlying = false;
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (_thrusterController._currentEnergy>0 && Input.GetKey(KeyCode.LeftShift))
         {
             isFlying = true;
-            _speedScale = 3;
+            _speedScale = _thrustSpeedMutiplier;
             _rb.gravityScale = 0;
+            _playerAnimation.Fly();
         }
-        else if (Input.GetKey(KeyCode.Space))
+        else if (_thrusterController._currentEnergy > 0 && Input.GetKey(KeyCode.Space))
         {
             isFlying = true;
             _speedScale = 1;
             _rb.gravityScale = 0;
+            _playerAnimation.Fly();
         }
         else
         {
             _speedScale = 1;
             _rb.gravityScale = gravityScale;
+            _playerAnimation.NotFly();
         }
         /* dash */
         _canStand = canStand();
@@ -146,7 +172,7 @@ public class PlayerController : MonoBehaviour
             {
                 _playerEffectController.ShowAfterImage(_playerSprite);
             }
-            SwitchToStanding();
+            //SwitchToStanding();
         }
 
         if (_dashCounter > 0)
@@ -165,21 +191,22 @@ public class PlayerController : MonoBehaviour
         }
         /* dash */
 
-        bool grounded = IsGrounded();
+        isGrounded = IsGrounded();
         Vector2 velocity = _rb.velocity;
         float horizontal = Input.GetAxisRaw("Horizontal") * (_invertedControl ? -1 : 1);
         float vertical = Input.GetAxisRaw("Vertical") * (_invertedControl ? -1 : 1);
-        if (horizontal != 0 && grounded && !isFlying)
+        DecideFlyDirection(horizontal,vertical);
+        if (horizontal != 0 && isGrounded && !isFlying)
         {
-            _audioSource.enabled = true;
+            _startFootstep = true;
         }
         else
         {
-            _audioSource.enabled = false;
+            _startFootstep = false;
         }
         if (_canStop)
         {
-            if(horizontal!=0)
+            if (horizontal != 0)
                 velocity.x = horizontal * _moveSpeed * _speedScale;
             if (vertical != 0 && isFlying)
                 velocity.y = vertical * _moveSpeed * _speedScale;
@@ -188,23 +215,26 @@ public class PlayerController : MonoBehaviour
         {
             if (horizontal != 0 || Input.GetKey(KeyCode.LeftShift))
             {
-                if(!isFlying)
-                    _audioSource.enabled = true;
+                if (!isFlying)
+                    _footStepAudioSource.enabled = true;
                 if (horizontal != 0)
                     velocity.x = horizontal * _moveSpeed * _speedScale;
                 if (vertical != 0 && isFlying)
                     velocity.y = vertical * _moveSpeed * _speedScale;
-                
+
             }
             else
             {
-                _audioSource.enabled = false;
+                _footStepAudioSource.enabled = false;
             }
         }
 
-        _playerAnimation.Move(horizontal);
+        if (isGrounded)
+        {
+            _playerAnimation.Move(horizontal);
+        }
 
-        if (!grounded)
+        if (!isGrounded)
         {
             _coyoteCounter -= Time.deltaTime;
             _playerAnimation.SetCoyote(true);
@@ -220,9 +250,9 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = _jumpForce * _jumpForceScale;
 
-            _playerAnimation.Jump(!grounded);
+            _playerAnimation.Jump(!isGrounded);
             //if (grounded)
-            if (grounded || _coyoteCounter > 0)
+            if (isGrounded || _coyoteCounter > 0)
             {
                 _coyoteCounter = 0;
                 //StartCoroutine("ResetJump");
@@ -230,6 +260,30 @@ public class PlayerController : MonoBehaviour
         }
 
         _rb.velocity = velocity;
+    }
+
+    private void DecideFlyDirection(float horizontal, float vertical)
+    {
+        float xScale = transform.localScale.x;
+        if ((horizontal > 0 && xScale > 0) || (horizontal < 0 && xScale < 0))
+        {
+            _playerAnimation.FlyForward();
+        }
+        else if ((horizontal < 0 && xScale > 0) || (horizontal > 0 && xScale < 0))
+        {
+            _playerAnimation.FlyBackward();
+        }
+        else if (horizontal == 0 && vertical > 0)
+        {
+            _playerAnimation.FlyUpward();
+        }else if (horizontal == 0 && vertical < 0)
+        {
+            _playerAnimation.FlyDownward();
+        }
+        else if(!Input.GetKey(KeyCode.LeftShift) || ( horizontal ==0 && vertical == 0))
+        {
+            _playerAnimation.Hover();
+        }
     }
 
     private void Move()
@@ -257,7 +311,7 @@ public class PlayerController : MonoBehaviour
             //{
             //    _playerEffectController.ShowAfterImage(_playerSprite);
             //}
-            SwitchToStanding();
+            //SwitchToStanding();
         }
 
         if (_dashCounter > 0)
@@ -287,11 +341,11 @@ public class PlayerController : MonoBehaviour
         {
             if (horizontal != 0 && grounded)
             {
-                _audioSource.enabled = true;
+                _footStepAudioSource.enabled = true;
             }
             else
             {
-                _audioSource.enabled = false;
+                _footStepAudioSource.enabled = false;
             }
             if (_canStop)
             {
@@ -301,12 +355,12 @@ public class PlayerController : MonoBehaviour
             {
                 if (horizontal != 0 || Input.GetKey(KeyCode.LeftShift))
                 {
-                    _audioSource.enabled = true;
+                    _footStepAudioSource.enabled = true;
                     velocity.x = horizontal * _moveSpeed * _speedScale;
                 }
                 else
                 {
-                    _audioSource.enabled = false;
+                    _footStepAudioSource.enabled = false;
                 }
             }
         }

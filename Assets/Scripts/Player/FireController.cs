@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 using static Bullet;
 using static FirePattern;
 
@@ -21,11 +22,13 @@ public class FireController : MonoBehaviour
     [SerializeField] TextMeshProUGUI _ammoText;
     [SerializeField] Light2D _fireLight;
     [SerializeField] CinemachineVirtualCamera _virtCam;
+    [SerializeField] Slider _reloadSlider;
 
     public Weapon _currentWeapon;
 
     public int poolCount = 0;
 
+    float _reloadTimeCounter;
     private int bulletCount;
     //ObjectPool<Bullet> _bulletPool;
     PlayerAnimation _playerAnimation;
@@ -55,6 +58,7 @@ public class FireController : MonoBehaviour
 
 
     private bool _canFire = true;
+    private bool _reloading = false;
 
     public bool _isStanding { get; set; } = true;
 
@@ -84,6 +88,22 @@ public class FireController : MonoBehaviour
         _ammoText.text = bulletCount + "/" +_currentWeapon.capacity;
         //poolCount = _bulletPool.GetCount();
         //DecideFirePosition();
+        if (Input.GetKeyDown(KeyCode.R) && bulletCount < _currentWeapon.capacity)
+        {
+            TriggerReload();
+        }
+        if (_reloadTimeCounter > 0)
+        {
+            _reloadSlider.value = _reloadTimeCounter / _currentWeapon.reloadTime;
+            _reloadTimeCounter -= Time.deltaTime;
+            return;
+        }
+        else if(_reloading && _reloadTimeCounter <= 0)
+        {
+            _reloadSlider.gameObject.SetActive(false);
+            _reloading = false;
+            bulletCount = _currentWeapon.capacity;
+        }
         if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0) || (Input.GetKey(KeyCode.Mouse0) && bulletCount > 0))
         {
             if (_fireCounter <= 0)
@@ -92,6 +112,7 @@ public class FireController : MonoBehaviour
                 if (bulletCount <= 0)
                 {
                     _audioSource.PlayOneShot(_emptyGunShot);
+                    TriggerReload();
                 }
                 else
                 {
@@ -116,15 +137,13 @@ public class FireController : MonoBehaviour
 
     }
 
-    private IEnumerator Reload()
+    private void TriggerReload()
     {
-        //TODO: Show reload progress bar
-        //TODO: Play reload animation
-        yield return new WaitForSeconds(_currentWeapon.reloadTime);
-        bulletCount = _currentWeapon.capacity;
-        //TODO: Reset reload progress bar
-        //TODO: Hide reload progress bar
-        //TODO: Stop reload animation
+        if (_reloading) return;
+        _reloadTimeCounter = _currentWeapon.reloadTime;
+        _reloadSlider.gameObject.SetActive(true);
+        _reloadSlider.value = 0;
+        _reloading = true;
     }
 
     private void Shoot()

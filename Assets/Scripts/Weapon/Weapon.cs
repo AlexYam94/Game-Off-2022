@@ -46,6 +46,12 @@ public class Weapon : ScriptableObject
     {
         Bullet b = GameObject.Instantiate(bullet);
         b.transform.position = firePoint.position;
+        float addedOffset;
+        do
+        {
+            addedOffset = (float)new System.Random().NextDouble() * spread;
+        } while (addedOffset > spread);
+        b.SetDirection(new Vector2(direction.x + addedOffset, direction.y + addedOffset));
         b.SetDirection(direction);
         b.damageMultiplier = damageMultiplier;
     }
@@ -62,7 +68,7 @@ public class Weapon : ScriptableObject
 
             do
             {
-                addedOffset = (float)new System.Random().NextDouble();
+                addedOffset = (float)new System.Random().NextDouble() * spread;
             } while (addedOffset > spread);
 
 
@@ -90,13 +96,20 @@ public class Weapon : ScriptableObject
     {
         Bullet b = GameObject.Instantiate(bullet);
         b.transform.position = firePoint.position;
-        b.SetDirection(direction);
+        var pDir = Vector2.Perpendicular(direction) * UnityEngine.Random.Range(-spread, spread);
+        b.SetDirection(direction + pDir);
         b.damageMultiplier = damageMultiplier;
     }
     private void CrossbpwFire(Transform firePoint, Vector2 direction, float damageMultiplier)
     {
         Bullet b = GameObject.Instantiate(bullet);
         b.transform.position = firePoint.position;
+        float addedOffset;
+        do
+        {
+            addedOffset = (float)new System.Random().NextDouble() * spread;
+        } while (addedOffset > spread);
+        b.SetDirection(new Vector2(direction.x + addedOffset, direction.y + addedOffset));
         b.SetDirection(direction);
         b.damageMultiplier = damageMultiplier;
     }

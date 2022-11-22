@@ -109,7 +109,9 @@ public class Bullet : MonoBehaviour
         //var direction = (other.position - transform.position).normalized;
         var direction = (transform.position - other.transform.position).normalized;
 
-        other.gameObject.GetComponent<Rigidbody2D>()?.AddForce(direction.normalized * _knockbackForce, ForceMode2D.Force);
+        var rb = other.gameObject.GetComponent<Rigidbody2D>();
+        rb.AddForce(direction.normalized * _knockbackForce, ForceMode2D.Force);
+
     }
 
     IEnumerator HitPause()
@@ -129,17 +131,7 @@ public class Bullet : MonoBehaviour
         while (true)
         {
             _lastFramePos = transform.position;
-            yield return null;
-            yield return null;
-            yield return null;
-            yield return null;
-            yield return null;
-            yield return null;
-            yield return null;
-            yield return null;
-            yield return null;
-            yield return null;
-            yield return null;
+            yield return new WaitForSeconds(.3f);
         }
     }
 }

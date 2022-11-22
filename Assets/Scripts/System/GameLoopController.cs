@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class GameLoopController : MonoBehaviour
 {
+    [SerializeField] int nextLevelIndex;
 
     ChooseUpgrade _chooseUpgrade;
+
     // Start is called before the first frame update
     void Start()
     {

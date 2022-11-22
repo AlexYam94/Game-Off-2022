@@ -19,7 +19,7 @@ MonoBehaviour:
   gunshot: {fileID: 8300000, guid: f34f0e3bd822c064087204b1f730149d, type: 3}
   autoMode: 0
   capacity: 10
-  reloadTime: 0
+  reloadTime: 5
   fireRate: 0.8
   spread: 0.2
   isFlame: 1

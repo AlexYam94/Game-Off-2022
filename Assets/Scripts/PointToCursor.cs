@@ -8,6 +8,7 @@ public class PointToCursor : MonoBehaviour
     [SerializeField] SpriteRenderer _playerSprite;
     [SerializeField] bool _changeFacing = true;
     [SerializeField] float _maxAngle = 90f;
+    [SerializeField] bool _invertArmScale = false;
 
     // Update is called once per frame
     void Update()
@@ -41,11 +42,11 @@ public class PointToCursor : MonoBehaviour
             {
                 //_playerSprite.flipX = true;
                 scale.x = -1;
-                transform.localRotation = Quaternion.Euler(180, 0, rotationZ);
+                transform.localRotation = Quaternion.Euler(_invertArmScale? 0 : 180, 0, rotationZ);
             }
             else
             {
-                transform.localRotation = Quaternion.Euler(0, 0, rotationZ);
+                transform.localRotation = Quaternion.Euler(_invertArmScale? 180 : 0, 0, rotationZ);
                 scale.x = 1;
                 //_playerSprite.flipX = false;
             }
@@ -85,6 +86,6 @@ public class PointToCursor : MonoBehaviour
 
             }
         }
-        transform.localScale = scale;
+        transform.localScale = _invertArmScale? new Vector3(scale.x * -1, scale.y * -1, scale.z) : scale;
     }
 }

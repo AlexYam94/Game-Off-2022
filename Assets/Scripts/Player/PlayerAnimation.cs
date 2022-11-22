@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,6 +51,54 @@ public class PlayerAnimation : MonoBehaviour
         _armAnimator.SetTrigger("shoot");
     }
 
+    public void Fly()
+    {
+        _playerAnimator.SetBool("fly", true);
+    }
+
+    public void NotFly()
+    {
+        _playerAnimator.SetBool("fly", false);
+        _playerAnimator.SetBool("fly forward", false);
+        _playerAnimator.SetBool("fly backward", false);
+        _playerAnimator.SetBool("fly upward", false);
+    }
+
+    public void Hover()
+    {
+        _playerAnimator.SetBool("fly", true);
+        _playerAnimator.SetBool("fly forward", false);
+        _playerAnimator.SetBool("fly backward", false);
+        _playerAnimator.SetBool("fly upward", false);
+    }
+
+    public void FlyBackward()
+    {
+        _playerAnimator.SetBool("fly forward", false);
+        _playerAnimator.SetBool("fly backward", true);
+        _playerAnimator.SetBool("fly upward", false);
+    }
+
+    public void FlyForward()
+    {
+        _playerAnimator.SetBool("fly forward", true);
+        _playerAnimator.SetBool("fly backward", false);
+        _playerAnimator.SetBool("fly upward", false);
+    }
+
+    public void FlyUpward()
+    {
+        _playerAnimator.SetBool("fly upward", true);
+        _playerAnimator.SetBool("fly forward", false);
+        _playerAnimator.SetBool("fly backward", false);
+    }
+    public void FlyDownward()
+    {
+        _playerAnimator.SetBool("fly upward", false);
+        _playerAnimator.SetBool("fly forward", true);
+        _playerAnimator.SetBool("fly backward", false);
+    }
+
     public void ShootUp()
     {
         //if (_isBall) return;
@@ -95,4 +144,5 @@ public class PlayerAnimation : MonoBehaviour
     {
         _playerAnimator.enabled = true;
     }
+
 }

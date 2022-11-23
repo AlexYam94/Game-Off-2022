@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _thrustSpeedMutiplier = 3f;
     [SerializeField] AudioSource _footStepAudioSource;
     [SerializeField] float _footStepDecayTime = .5f;
+    [SerializeField] GameObject _mechaStartupSound;
+    [SerializeField] GameObject _dropEffect;
 
     private float _coyoteCounter;
     bool _resetJumpNeeded = false;
@@ -70,7 +72,7 @@ public class PlayerController : MonoBehaviour
         _canStop = true;
         _coyoteCounter = _coyoteTime;
         _isVisible = true;
-        _footStepAudioSource = GetComponent<AudioSource>();
+        //_footStepAudioSource = GetComponent<AudioSource>();
         _thrusterController = GetComponent<ThrusterController>();
 }
 
@@ -103,6 +105,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            if(!_mechaStartupSound.activeSelf)
+                _mechaStartupSound.SetActive(true);
             MechaMove();
         }
         //if (!Input.GetKey(KeyCode.W))
@@ -190,7 +194,15 @@ public class PlayerController : MonoBehaviour
             return;
         }
         /* dash */
-
+        
+        if(!isGrounded && IsGrounded())
+        {
+            _dropEffect.SetActive(true);
+        }
+        else if (isFlying)
+        {
+            _dropEffect.SetActive(false);
+        }
         isGrounded = IsGrounded();
         Vector2 velocity = _rb.velocity;
         float horizontal = Input.GetAxisRaw("Horizontal") * (_invertedControl ? -1 : 1);

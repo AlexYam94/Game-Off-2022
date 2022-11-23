@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ThrusterController : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class ThrusterController : MonoBehaviour
     [SerializeField] float _flyEnergyPerSecond = 10f;
     [SerializeField] float _energyRecoverPerSecond = 15f;
     [SerializeField] float _startEnergyRecoverDelay = 2f;
+    [SerializeField] Slider _energyBar;
 
     PlayerController _playerController;
 
@@ -40,32 +42,16 @@ public class ThrusterController : MonoBehaviour
             _isFlying = false;
         }
 
-        //if (_playerController.isGrounded && !_isFlying)
-        if (!_isFlying)
-        {
-            _startEnergyRecoverDelayCounter += Time.deltaTime;
-        }
-        else
-        {
-            _startEnergyRecoverDelayCounter = 0;
-        }
+        CheckStartRecoverEnergy();
+        HandleEneryBar();
+        RegenerateEnergy();
+        HandleThrustSound();
+        HandleThrustVisual();
 
-        if (_startEnergyRecoverDelayCounter >= _startEnergyRecoverDelay && _currentEnergy < _maxEnergy)
-        {
-            _currentEnergy = Mathf.Min(_maxEnergy, _currentEnergy + _energyRecoverPerSecond / 10 * Time.deltaTime);
-        }
+    }
 
-            if (_startThruster)
-        {
-            _thrusterStartCounter = Mathf.Clamp(Time.deltaTime + _thrusterStartCounter, 0, _thrusterStartTime);
-        }
-        else
-        {
-            _thrusterStartCounter = Mathf.Clamp(_thrusterStartCounter - Time.deltaTime, 0, _thrusterStartTime);
-
-        }
-        _thrusterSound.volume = _thrusterStartCounter / _thrusterStartTime;
-
+    private void HandleThrustVisual()
+    {
         if (_isFlying && _currentEnergy > 0)
         {
             _currentEnergy = Mathf.Max(0, _currentEnergy - _flyEnergyPerSecond * Time.deltaTime);
@@ -83,18 +69,52 @@ public class ThrusterController : MonoBehaviour
                 a.gameObject.SetActive(false);
             }
         }
-        
     }
-    IEnumerator RegenerateEnergy()
+
+    private void HandleThrustSound()
     {
-        while(true)
+        if (_startThruster)
         {
-            if (_startEnergyRecoverDelayCounter >= _startEnergyRecoverDelay && _currentEnergy < _maxEnergy)
-            {
-                _currentEnergy += Mathf.Min(_maxEnergy, _energyRecoverPerSecond / 10 * Time.deltaTime);
-                yield return new WaitForSeconds(.1f);
-            }
-            yield return null;
+            _thrusterStartCounter = Mathf.Clamp(Time.deltaTime + _thrusterStartCounter, 0, _thrusterStartTime);
         }
+        else
+        {
+            _thrusterStartCounter = Mathf.Clamp(_thrusterStartCounter - Time.deltaTime, 0, _thrusterStartTime);
+
+        }
+        _thrusterSound.volume = _thrusterStartCounter / _thrusterStartTime;
+    }
+
+    private void RegenerateEnergy()
+    {
+        if (_startEnergyRecoverDelayCounter >= _startEnergyRecoverDelay && _currentEnergy < _maxEnergy)
+        {
+            _currentEnergy = Mathf.Min(_maxEnergy, _currentEnergy + _energyRecoverPerSecond * Time.deltaTime);
+        }
+    }
+
+    private void CheckStartRecoverEnergy()
+    {
+        if (!_isFlying)
+        {
+            _startEnergyRecoverDelayCounter += Time.deltaTime;
+        }
+        else
+        {
+            _startEnergyRecoverDelayCounter = 0;
+        }
+    }
+
+    private void HandleEneryBar()
+    {
+        if (_currentEnergy < _maxEnergy)
+        {
+            _energyBar.gameObject.SetActive(true);
+        }
+        else
+        {
+            _energyBar.gameObject.SetActive(false);
+        }
+        _energyBar.value = Mathf.Min(1, _currentEnergy / _maxEnergy);
     }
 }

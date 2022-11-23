@@ -104,23 +104,29 @@ public class FireController : MonoBehaviour
             _reloading = false;
             bulletCount = _currentWeapon.capacity;
         }
-        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0) || (Input.GetKey(KeyCode.Mouse0) && bulletCount > 0))
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse0))
         {
-            if (_fireCounter <= 0)
+            if (bulletCount > 0)
             {
-                _fireCounter = _currentWeapon.fireRate;
-                if (bulletCount <= 0)
+                if (_fireCounter <= 0)
                 {
-                    _audioSource.PlayOneShot(_emptyGunShot);
-                    TriggerReload();
-                }
-                else
-                {
-                    if (_isStanding && _canFire)
+                    _fireCounter = _currentWeapon.fireRate;
+                    if (bulletCount <= 0)
                     {
-                        Shoot();
+                        _audioSource.PlayOneShot(_emptyGunShot);
+                    }
+                    else
+                    {
+                        if (_isStanding && _canFire)
+                        {
+                            Shoot();
+                        }
                     }
                 }
+            }
+            else
+            {
+                TriggerReload();
             }
         }
         _fireCounter -= Time.deltaTime;

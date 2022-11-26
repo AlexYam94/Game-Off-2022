@@ -8,11 +8,13 @@ public class ThrusterController : MonoBehaviour
     [SerializeField] AudioSource _thrusterSound;
     [SerializeField] Animator[] _thrusters;
     [SerializeField] float _thrusterStartTime = .5f;
-    [SerializeField] float _maxEnergy = 100f;
     [SerializeField] float _flyEnergyPerSecond = 10f;
     [SerializeField] float _energyRecoverPerSecond = 15f;
     [SerializeField] float _startEnergyRecoverDelay = 2f;
     [SerializeField] Slider _energyBar;
+    [SerializeField] float _dasgEnergyConsumptionMultiplier = 1.5f;
+
+    public float maxEnergy = 100f;
 
     PlayerController _playerController;
 
@@ -20,6 +22,7 @@ public class ThrusterController : MonoBehaviour
     private float _thrusterStartCounter = 0f;
     float _startEnergyRecoverDelayCounter = 0f;
     private bool _isFlying = false;
+    private float _energyConsumptionMultiplier = 1f;
 
     public float _currentEnergy;
     // Start is called before the first frame update
@@ -27,7 +30,7 @@ public class ThrusterController : MonoBehaviour
     {
         _playerController = GetComponent<PlayerController>();
         //StartCoroutine(RegenerateEnergy());
-        _currentEnergy = _maxEnergy;
+        _currentEnergy = maxEnergy;
     }
 
     // Update is called once per frame
@@ -35,6 +38,13 @@ public class ThrusterController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Space))
         {
+            if (Input.GetKey(KeyCode.LeftShift)) {
+                _energyConsumptionMultiplier = _dasgEnergyConsumptionMultiplier;
+            }
+            else
+            {
+                _energyConsumptionMultiplier = 1f;
+            }
             _isFlying = true;
         }
         else
@@ -54,7 +64,7 @@ public class ThrusterController : MonoBehaviour
     {
         if (_isFlying && _currentEnergy > 0)
         {
-            _currentEnergy = Mathf.Max(0, _currentEnergy - _flyEnergyPerSecond * Time.deltaTime);
+            _currentEnergy = Mathf.Max(0, _currentEnergy - _flyEnergyPerSecond * _energyConsumptionMultiplier * Time.deltaTime);
             foreach (var a in _thrusters)
             {
                 a.gameObject.SetActive(true);
@@ -87,15 +97,15 @@ public class ThrusterController : MonoBehaviour
 
     private void RegenerateEnergy()
     {
-        if (_startEnergyRecoverDelayCounter >= _startEnergyRecoverDelay && _currentEnergy < _maxEnergy)
+        if (_startEnergyRecoverDelayCounter >= _startEnergyRecoverDelay && _currentEnergy < maxEnergy)
         {
-            _currentEnergy = Mathf.Min(_maxEnergy, _currentEnergy + _energyRecoverPerSecond * Time.deltaTime);
+            _currentEnergy = Mathf.Min(maxEnergy, _currentEnergy + _energyRecoverPerSecond * Time.deltaTime);
         }
     }
 
     private void CheckStartRecoverEnergy()
     {
-        if (!_isFlying)
+        if (!_isFlying || _currentEnergy <= 0)
         {
             _startEnergyRecoverDelayCounter += Time.deltaTime;
         }
@@ -107,7 +117,7 @@ public class ThrusterController : MonoBehaviour
 
     private void HandleEneryBar()
     {
-        if (_currentEnergy < _maxEnergy)
+        if (_currentEnergy < maxEnergy)
         {
             _energyBar.gameObject.SetActive(true);
         }
@@ -115,6 +125,6 @@ public class ThrusterController : MonoBehaviour
         {
             _energyBar.gameObject.SetActive(false);
         }
-        _energyBar.value = Mathf.Min(1, _currentEnergy / _maxEnergy);
+        _energyBar.value = Mathf.Min(1, _currentEnergy / maxEnergy);
     }
 }

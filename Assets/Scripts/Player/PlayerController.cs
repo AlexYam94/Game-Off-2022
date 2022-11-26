@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -23,11 +24,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _ballSpeedMultiplier = .8f;
     [SerializeField] CircleCollider2D _ballCollider;
     [SerializeField] float _coyoteTime = .3f;
-    [SerializeField] float _thrustSpeedMutiplier = 3f;
     [SerializeField] AudioSource _footStepAudioSource;
     [SerializeField] float _footStepDecayTime = .5f;
     [SerializeField] GameObject _mechaStartupSound;
     [SerializeField] GameObject _dropEffect;
+    [SerializeField] ParticleSystem[] _footstepDustEffects;
 
     private float _coyoteCounter;
     bool _resetJumpNeeded = false;
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private float _footStepDecayCounter = 0f;
     private bool _startFootstep = false;
 
+    public float thrustSpeedMutiplier = 3f;
     public float batteryCapacity = 100f;
     public bool isInMecha = false;
 
@@ -144,7 +146,7 @@ public class PlayerController : MonoBehaviour
         if (_thrusterController._currentEnergy>0 && Input.GetKey(KeyCode.LeftShift))
         {
             isFlying = true;
-            _speedScale = _thrustSpeedMutiplier;
+            _speedScale = thrustSpeedMutiplier;
             _rb.gravityScale = 0;
             _playerAnimation.Fly();
         }
@@ -244,17 +246,31 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             _playerAnimation.Move(horizontal);
+            _coyoteCounter = _coyoteTime;
+            _playerAnimation.SetCoyote(false);
+            _footstepDustEffects.ToList().ForEach(f =>
+            {
+                var e = f.emission;
+                e.enabled = true;
+            });
+        }
+        else
+        {
+            _playerAnimation.Move(0);
+            _coyoteCounter -= Time.deltaTime;
+            _playerAnimation.SetCoyote(true);
+            _footstepDustEffects.ToList().ForEach(f =>
+            {
+                var e = f.emission;
+                e.enabled = true;
+            });
         }
 
         if (!isGrounded)
         {
-            _coyoteCounter -= Time.deltaTime;
-            _playerAnimation.SetCoyote(true);
         }
         else
         {
-            _coyoteCounter = _coyoteTime;
-            _playerAnimation.SetCoyote(false);
         }
 
         // Jump
@@ -376,7 +392,10 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        _playerAnimation.Move(horizontal);
+        if (isGrounded)
+        {
+            _playerAnimation.Move(horizontal);
+        }
 
         if (!grounded)
         {

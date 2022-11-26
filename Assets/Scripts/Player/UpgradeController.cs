@@ -10,7 +10,6 @@ public class UpgradeController : MonoBehaviour
     Dictionary<UpgradeEnum, int> _existedUpgrades = new Dictionary<UpgradeEnum, int>();
 
     public float damageMultiplier = 1f;
-    public float speedMultiploer = 1f;
     public float ammoCapacityMultiplier = 1f;
     public float reloadSpeedMultiplier = 1f;
     public float fireRateMultiplier = 1f;
@@ -18,12 +17,14 @@ public class UpgradeController : MonoBehaviour
     PlayerController _playerController;
     WeaponController _weaponController;
     PlayerHealthController _playerHealthController;
+    EquipmentController _equipmentController;
 
     // Start is called before the first frame update
     void Start() 
     {
         _playerController = GetComponent<PlayerController>();
         _playerHealthController = GetComponent<PlayerHealthController>();
+        _equipmentController = GetComponent<EquipmentController>();
     }
 
     // Update is called once per frame
@@ -94,18 +95,21 @@ public class UpgradeController : MonoBehaviour
                 _weaponController.SpawnMechaAtPlayerPosition();
                 break;
             case UpgradeEnum.backpack:
-                _weaponController.EnableMechaBackpack();
+                _equipmentController.isJetBackpackEnabled = true;
                 break;
             case UpgradeEnum.battery:
-                _playerController.batteryCapacity *= 1.5f;
+                _equipmentController.isExternalBatteryEnabled = true;
                 break;
-            case UpgradeEnum.missile_attachment:
-                _weaponController.EnableMissleAttachment();
+            case UpgradeEnum.missile_attachment_left:
+                _equipmentController.isLeftMissleEnabled = true;
+                break;
+            case UpgradeEnum.missile_attachment_right:
+                _equipmentController.isRightMissleEnabled = true;
                 break;
             case UpgradeEnum.speed1:
             case UpgradeEnum.speed2:
             case UpgradeEnum.speed3:
-                speedMultiploer *= 1.2f;
+                _playerController.thrustSpeedMutiplier *= 1.2f;
                 break;
             case UpgradeEnum.health1:
             case UpgradeEnum.health2:

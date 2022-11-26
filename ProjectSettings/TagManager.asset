@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Boss
+  - Cam Follow
   layers:
   - Default
   - TransparentFX

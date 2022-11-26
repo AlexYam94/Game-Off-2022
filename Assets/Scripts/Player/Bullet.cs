@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] int _penetrateAmount = 1;
     [SerializeField] int _groundLayer;
     [SerializeField] float _knockbackForce = 5f;
+    [SerializeField] GameObject _particleSystem;
     public int _hitPauseFrame = 5;
 
     public float damageMultiplier = 1f;
@@ -84,11 +85,13 @@ public class Bullet : MonoBehaviour
 
         if ((other.gameObject.layer == _groundLayer) || _penetrateCount > _penetrateAmount)
         {
-            Destroy(gameObject, 1);
+            Destroy(gameObject, 2);
             //gameObject.SetActive(false);
             _sprite.enabled = false;
             _collider.enabled = false;
             _trail.enabled = false;
+            _rb.velocity = Vector2.zero;
+            _particleSystem.SetActive(false);
             if (_impactEffect != null)
             {
                 //TODO: Play hit sound
@@ -102,6 +105,14 @@ public class Bullet : MonoBehaviour
         //_pool.Enqueue(this);
         //gameObject.SetActive(false);
         //Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if(Time.timeScale != 1)
+        {
+            Time.timeScale = 1;
+        }
     }
 
     private void KnockBack(Transform other)

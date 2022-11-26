@@ -2126,7 +2126,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661074151926445439}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3943d0028cbcb8c479e989d8d4453dfe, type: 3}
   m_Name: 
@@ -2154,7 +2154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4a31e9f79b070428dff2c6395de2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalHealth: 50
+  _totalHealth: 30
   _deathEffect: {fileID: 0}
   _score: 0
   _deathSound: {fileID: 0}
@@ -2213,7 +2213,7 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1284
+  m_InstanceId: -1368
 --- !u!50 &1608818407
 Rigidbody2D:
   serializedVersion: 4

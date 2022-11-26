@@ -23,7 +23,8 @@ public class Weapon : ScriptableObject
         pistol,
         shotgun,
         smg,
-        crossbow
+        crossbow,
+        missile
     }
 
     public Action<Transform, Vector2, float> Fire()

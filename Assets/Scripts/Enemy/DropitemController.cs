@@ -15,7 +15,8 @@ public class DropitemController : MonoBehaviour
         if (shouldDrop)
         {
             int index = Random.Range(0, itemsToDrop.Length);
-            GameObject.Instantiate(itemsToDrop[index], transform.position, Quaternion.identity);
+            if(itemsToDrop.Length>0&&itemsToDrop[index]!=null)
+                GameObject.Instantiate(itemsToDrop[index], transform.position, Quaternion.identity);
         }
     }
 }

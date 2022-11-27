@@ -469,9 +469,9 @@ public class PlayerController : MonoBehaviour
         hitMiddle = Physics2D.Raycast(middle, Vector2.down, _groundDetectDistance, _groundLayer);
         hitLeft = Physics2D.Raycast(left, Vector2.down, _groundDetectDistance, _groundLayer);
         hitRight = Physics2D.Raycast(right, Vector2.down, _groundDetectDistance, _groundLayer);
-        Debug.DrawRay(middle, Vector2.down * _groundDetectDistance, Color.red);
-        Debug.DrawRay(left, Vector2.down * _groundDetectDistance, Color.red);
-        Debug.DrawRay(right, Vector2.down * _groundDetectDistance, Color.red);
+        //Debug.DrawRay(middle, Vector2.down * _groundDetectDistance, Color.red);
+        //Debug.DrawRay(left, Vector2.down * _groundDetectDistance, Color.red);
+        //Debug.DrawRay(right, Vector2.down * _groundDetectDistance, Color.red);
         bool isGround = hitLeft.collider != null || hitMiddle.collider != null || hitRight.collider != null;
         _playerAnimation.Jump(!isGround);
         return isGround;
@@ -492,9 +492,9 @@ public class PlayerController : MonoBehaviour
         hitMiddle = Physics2D.Raycast(middle, Vector2.down, _standDetectDistance, _groundLayer);
         hitLeft = Physics2D.Raycast(left, Vector2.down, _standDetectDistance, _groundLayer);
         hitRight = Physics2D.Raycast(right, Vector2.down, _standDetectDistance, _groundLayer);
-        Debug.DrawRay(middle, Vector2.down * _standDetectDistance, Color.red);
-        Debug.DrawRay(left, Vector2.down * _standDetectDistance, Color.red);
-        Debug.DrawRay(right, Vector2.down * _standDetectDistance, Color.red);
+        //Debug.DrawRay(middle, Vector2.down * _standDetectDistance, Color.red);
+        //Debug.DrawRay(left, Vector2.down * _standDetectDistance, Color.red);
+        //Debug.DrawRay(right, Vector2.down * _standDetectDistance, Color.red);
         bool canStand = hitLeft.collider == null && hitMiddle.collider == null && hitRight.collider == null;
         return canStand;
     }

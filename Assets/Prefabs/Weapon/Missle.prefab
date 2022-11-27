@@ -5568,8 +5568,8 @@ ParticleSystem:
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 3
+      scalar: -1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9954,6 +9954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 15
+  _playerDamagePercentage: 0.1
   _startChaseAfter: 0.1
   _lifeTime: 1.5
   _explosionSound: {fileID: 3257332974867188881}
@@ -9963,11 +9964,12 @@ MonoBehaviour:
   _damageLayer:
     serializedVersion: 2
     m_Bits: 4352
-  _explosionArea: 3
+  _explosionArea: 10
   _sprite: {fileID: 8269573625567541063}
-  _smoke: {fileID: 1241888070}
+  _smoke: {fileID: 1241888073}
   _light: {fileID: 7689185155617512394}
   _explosionEffect: {fileID: 1036509081961491023}
+  _explosionForce: 10000
   speed: 40
   rotateSpeed: 200
   isHoming: 0

@@ -12,6 +12,7 @@ public class ChooseUpgrade : MonoBehaviour
     [SerializeField] float _selectedUpgradeButtonDisappearAfterSecond = 1.5f;
     [SerializeField] float _chooseUpgradeTime = 10f;
     [SerializeField] Scrollbar _chooseUpgradeSlider;
+    [SerializeField] int _maxRandomUpgradeLoop = 50;
 
     UpgradeController _playerUpgradeController;
     GameObject _selectedUpgradeButton;
@@ -33,7 +34,7 @@ public class ChooseUpgrade : MonoBehaviour
         }
         if (_isChoosingUpgrade && _upgradeTimeCounter <= 0)
         {
-            _upgradeButtons[0].onClick.Invoke();
+            _upgradeButtons[0]?.onClick?.Invoke();
             _chooseUpgradeSlider.gameObject.SetActive(false);
         }
     }
@@ -41,8 +42,16 @@ public class ChooseUpgrade : MonoBehaviour
     public void ShowUpgrades(int numOfUpgrades)
     {
         _chooseUpgradeSlider.gameObject.SetActive(true);
-           Upgrade[] nextUpgrades = new Upgrade[numOfUpgrades];
-        for(int i = 0; i < numOfUpgrades; i++)
+        int upgradeLoopCount = 0;
+        ChooseNextUpgrades(numOfUpgrades, upgradeLoopCount);
+        _upgradeTimeCounter = _chooseUpgradeTime;
+        _isChoosingUpgrade = true;
+    }
+
+    private void ChooseNextUpgrades(int numOfUpgrades, int upgradeLoopCount)
+    {
+        Upgrade[] nextUpgrades = new Upgrade[numOfUpgrades];
+        for (int i = 0; i < numOfUpgrades; i++)
         {
             Upgrade u;
             bool duplicated;
@@ -50,24 +59,33 @@ public class ChooseUpgrade : MonoBehaviour
             {
                 duplicated = false;
                 u = upgradeList[Random.Range(0, upgradeList.Length - 1)];
-                foreach(var n in nextUpgrades)
+                foreach (var n in nextUpgrades)
                 {
-                    if(n!=null && n.upgradeType == u.upgradeType)
+                    if (n != null && n.upgradeType == u.upgradeType)
                     {
                         duplicated = true;
                     }
                 }
+                if (upgradeLoopCount > _maxRandomUpgradeLoop) break;
+                upgradeLoopCount++;
             } while (!_playerUpgradeController.CanUpgrade(u.upgradeType) || duplicated);
 
-            _upgradeButtons[i].onClick.RemoveAllListeners();
-            _upgradeButtons[i].gameObject.SetActive(true);
-            _upgradeButtons[i].image.sprite = u.upgradeIcon;
-            _upgradeButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = u.description;
-            _upgradeButtons[i].onClick.AddListener(Upgrade(u.upgradeType, _upgradeButtons[i]));
-            nextUpgrades[i] = u;
+            if (upgradeLoopCount > _maxRandomUpgradeLoop)
+            {
+                nextUpgrades[i] = null;
+                _upgradeButtons[i].onClick.RemoveAllListeners();
+                _upgradeButtons[i].gameObject.SetActive(false);
+            }
+            else
+            {
+                _upgradeButtons[i].onClick.RemoveAllListeners();
+                _upgradeButtons[i].gameObject.SetActive(true);
+                _upgradeButtons[i].image.sprite = u.upgradeIcon;
+                _upgradeButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = u.description;
+                _upgradeButtons[i].onClick.AddListener(Upgrade(u.upgradeType, _upgradeButtons[i]));
+                nextUpgrades[i] = u;
+            }
         }
-        _upgradeTimeCounter = _chooseUpgradeTime;
-        _isChoosingUpgrade = true;
     }
 
     public UnityAction Upgrade(UpgradeEnum type, Button button)
@@ -76,6 +94,7 @@ public class ChooseUpgrade : MonoBehaviour
         {
             _playerUpgradeController.Upgrade(type);
             DisableNotSelectedButton(button);
+            button.onClick.RemoveAllListeners();
             _selectedUpgradeButton = button.gameObject;
             StartCoroutine("DisableSelectedButtonAfterSeconds");
             _chooseUpgradeSlider.gameObject.SetActive(false);

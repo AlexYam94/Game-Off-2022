@@ -32,4 +32,10 @@ public enum UpgradeEnum
     health3,
     ap_bullet, //increase penetration, can hit more enemy in line
     explosive_bullet, //area damage, knockback
+    energy_recover_delay1,
+    energy_recover_delay2,
+    energy_recover_delay3,
+    energy_recover_rate1,
+    energy_recover_rate2,
+    energy_recover_rate3,
 }

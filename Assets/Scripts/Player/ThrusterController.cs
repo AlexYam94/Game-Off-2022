@@ -8,13 +8,13 @@ public class ThrusterController : MonoBehaviour
     [SerializeField] AudioSource _thrusterSound;
     [SerializeField] Animator[] _thrusters;
     [SerializeField] float _thrusterStartTime = .5f;
-    [SerializeField] float _flyEnergyPerSecond = 10f;
     [SerializeField] float _energyRecoverPerSecond = 15f;
     [SerializeField] float _startEnergyRecoverDelay = 2f;
     [SerializeField] Slider _energyBar;
-    [SerializeField] float _dasgEnergyConsumptionMultiplier = 1.5f;
+    [SerializeField] float _dashEnergyConsumptionMultiplier = 1.5f;
 
     public float maxEnergy = 100f;
+    public float _flyEnergyPerSecond = 10f;
 
     PlayerController _playerController;
 
@@ -39,7 +39,7 @@ public class ThrusterController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Space))
         {
             if (Input.GetKey(KeyCode.LeftShift)) {
-                _energyConsumptionMultiplier = _dasgEnergyConsumptionMultiplier;
+                _energyConsumptionMultiplier = _dashEnergyConsumptionMultiplier;
             }
             else
             {

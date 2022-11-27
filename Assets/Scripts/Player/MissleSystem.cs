@@ -14,13 +14,19 @@ public class MissleSystem : MonoBehaviour
     [SerializeField] float _reloadTime;
     [SerializeField] TextMeshProUGUI _ammoText;
 
+
+    public float fireRate = .5f;
+    public float fireRateMultiplier;
     public float damageMultiplier = 1f;
     public bool subWeaponEnabled = false;
     //private Weapon _currentSubWeapon;
     public int maxAmmo = 10;
+    public float reloadTimeMultiplier = 1f;
 
     private int _currentAmmo;
+    private UpgradeController _upgradeController;
     float _reloadTimeCounter;
+    float _fireCounter = 0;
     //private MissileFireLogic _fireLogic;
 
     private GameObject[] _targets = new GameObject[10];
@@ -30,6 +36,7 @@ public class MissleSystem : MonoBehaviour
     void Start()
     {
         _currentAmmo = maxAmmo;
+        _upgradeController = GetComponentInParent<UpgradeController>();
     }
 
     // Update is called once per frame
@@ -42,9 +49,10 @@ public class MissleSystem : MonoBehaviour
         {
             TriggerReload();
         }
+        _fireCounter = Mathf.Max(0, _fireCounter);
         if (_reloadTimeCounter > 0)
         {
-            _reloadSlider.value = _reloadTimeCounter / _reloadTime;
+            _reloadSlider.value = _reloadTimeCounter / _reloadTime * reloadTimeMultiplier;
             _reloadTimeCounter -= Time.deltaTime;
             return;
         }
@@ -58,23 +66,28 @@ public class MissleSystem : MonoBehaviour
         {
             if (_currentAmmo > 0)
             {
-                var m = Instantiate(_missile, _firePosition.position, Quaternion.identity);
-                m.SetRotation(transform.parent.rotation);
-                Fire(m);
-                _currentAmmo--;
+                if (_fireCounter <= 0)
+                {
+                    _fireCounter = fireRate * fireRateMultiplier;
+                    var m = Instantiate(_missile, _firePosition.position, Quaternion.identity);
+                    m.SetRotation(transform.parent.rotation);
+                    Fire(m);
+                    _currentAmmo--;
+                }
             }
             else
             {
                 TriggerReload();
             }
         }
+
     }
 
     private void Fire(HomingMissile m)
     {
         //TODO:
         m.direction = _firePosition.transform.right;
-        m.damageMultiplier = 1;
+        m.damageMultiplier = _upgradeController.damageMultiplier;
     }
 
     private RaycastHit2D[] FindTargets()
@@ -95,7 +108,7 @@ public class MissleSystem : MonoBehaviour
     private void TriggerReload()
     {
         if (_reloading) return;
-        _reloadTimeCounter = _reloadTime;
+        _reloadTimeCounter = _reloadTime * reloadTimeMultiplier;
         _reloadSlider.gameObject.SetActive(true);
         _reloadSlider.value = 0;
         _reloading = true;

@@ -6,6 +6,7 @@ using UnityEngine;
 public class HomingMissile : MonoBehaviour
 {
     [SerializeField] int _damage = 5;
+    [SerializeField] float _playerDamagePercentage = .3f;
     [SerializeField] float _startChaseAfter = .1f;
     [SerializeField] float _lifeTime = 1f;
     [SerializeField] AudioSource _explosionSound;
@@ -13,9 +14,10 @@ public class HomingMissile : MonoBehaviour
     [SerializeField] LayerMask _damageLayer;
     [SerializeField] float _explosionArea = 3f;
     [SerializeField] SpriteRenderer _sprite;
-    [SerializeField] GameObject _smoke;
+    [SerializeField] ParticleSystem _smoke;
     [SerializeField] GameObject _light;
     [SerializeField] GameObject _explosionEffect;
+    [SerializeField] float _explosionForce = 600f;
 
     public float speed = 30;
     public float rotateSpeed = 200f;
@@ -27,7 +29,7 @@ public class HomingMissile : MonoBehaviour
     private Collider2D _collider;
     private bool startChasing = false;
     private bool _hit = false;
-    public int damageMultiplier;
+    public float damageMultiplier;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +43,7 @@ public class HomingMissile : MonoBehaviour
     void FixedUpdate()
     {
         if (_hit) return;
-        Debug.DrawLine(transform.position, new Vector3(transform.position.x +   _explosionArea, transform.position.y + _explosionArea, 0));
+        //Debug.DrawLine(transform.position, new Vector3(transform.position.x +   _explosionArea, transform.position.y + _explosionArea, 0));
         if (!startChasing)
         {
             flyForward();
@@ -68,7 +70,7 @@ public class HomingMissile : MonoBehaviour
             _collider.enabled = false;
             _rb.velocity = Vector2.zero;
             _hit = true;
-            //_smoke.SetActive(false);
+            _smoke.emissionRate = 0;
             _light.SetActive(false);
             _explosionEffect.SetActive(true);
             ExplosionDamage();
@@ -83,11 +85,13 @@ public class HomingMissile : MonoBehaviour
         {
             if(h.transform.gameObject.tag == "Enemy")
             {
-                h.transform.gameObject.GetComponent<EnemyHealthController>().Damage(_damage);
+                ApplyExplosionForce(h.transform.gameObject.GetComponent<Rigidbody2D>(), _explosionForce, transform.position, _explosionArea);
+                h.transform.gameObject.GetComponent<EnemyHealthController>().Damage(_damage * damageMultiplier);
             }
             else if(h.transform.gameObject.tag == "Player")
             {
-                h.transform.gameObject.GetComponent<PlayerHealthController>().Damage(_damage);
+                ApplyExplosionForce(h.transform.gameObject.GetComponent<Rigidbody2D>(), _explosionForce, transform.position, _explosionArea);
+                h.transform.gameObject.GetComponent<PlayerHealthController>().Damage((int)(_damage * damageMultiplier * _playerDamagePercentage));
             }
         }
     }
@@ -101,4 +105,24 @@ public class HomingMissile : MonoBehaviour
     {
         transform.rotation = rotation;
     }
+
+    //https://forum.unity.com/threads/need-rigidbody2d-addexplosionforce.212173/#post-1426983
+    private void ApplyExplosionForce(Rigidbody2D body, float explosionForce, Vector3 explosionPosition, float explosionRadius)
+    {
+        var dir = (body.transform.position - explosionPosition);
+        float wearoff = 1 - (dir.magnitude / explosionRadius);
+        body.AddForce(dir.normalized * (wearoff <= 0f ? 0f : explosionForce) * wearoff);
+    }
+
+    //private void AddExplosionForce(this Rigidbody2D body, float explosionForce, Vector3 explosionPosition, float explosionRadius, float upliftModifier)
+    //{
+    //    var dir = (body.transform.position - explosionPosition);
+    //    float wearoff = 1 - (dir.magnitude / explosionRadius);
+    //    Vector3 baseForce = dir.normalized * (wearoff <= 0f ? 0f : explosionForce) * wearoff;
+    //    body.AddForce(baseForce);
+
+    //    float upliftWearoff = 1 - upliftModifier / explosionRadius;
+    //    Vector3 upliftForce = Vector2.up * explosionForce * upliftWearoff;
+    //    body.AddForce(upliftForce);
+    //}
 }

@@ -13,6 +13,7 @@ public class WarriorBug : MonoBehaviour
     [SerializeField] float _groundDetectDistance = .7f;
     [SerializeField] LayerMask _groundLayer;
     [SerializeField] float _jumpCooldown = 2f;
+    [SerializeField] float _jumpSpread = .3f;
 
     CapsuleCollider2D _collider;
     Rigidbody2D _rb;
@@ -41,10 +42,10 @@ public class WarriorBug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _anim.SetBool("jump", _isJumping);
-        _anim.SetBool("walk", !_isJumping);
         if (!_isJumping)
         {
+            _anim.SetBool("walk", true);
+            _anim.SetBool("jump", false);
             if (transform.position.x < _player.transform.position.x)
             {
                 flipX(true);
@@ -53,6 +54,11 @@ public class WarriorBug : MonoBehaviour
             {
                 flipX(false);
             }
+        }
+        else
+        {
+            _anim.SetBool("walk", false);
+            _anim.SetBool("jump", true);
         }
         if (IsGrounded())
         {
@@ -97,12 +103,13 @@ public class WarriorBug : MonoBehaviour
         _isJumping = true;
         _jumpCooldownCounter = _jumpCooldown;
         _groundDetectStartPosition.gameObject.SetActive(false);
+        float offset = 1 - Random.Range(-_jumpSpread, _jumpSpread);
         if (transform.position.x < _player.transform.position.x)
         {
             //_rb.velocity = new Vector2(_jumpForwardForce, _jumpUpwardForce);
             //_rb.AddForce(new Vector2(_jumpForwardForce, _jumpUpwardForce), ForceMode2D.Impulse);
 
-            _rb.velocity = new Vector2(_rb.velocity.x, _jumpUpwardForce);
+            _rb.velocity = new Vector2(_rb.velocity.x, _jumpUpwardForce * offset);
             //_rb.AddForce(new Vector2(0, _jumpUpwardForce), ForceMode2D.Impulse);
             yield return null;
             _rb.velocity = new Vector2(_jumpForwardForce, _rb.velocity.y);
@@ -113,7 +120,7 @@ public class WarriorBug : MonoBehaviour
             //_rb.velocity = new Vector2(-_jumpForwardForce, _jumpUpwardForce);
             //_rb.AddForce(new Vector2(-_jumpForwardForce, _jumpUpwardForce), ForceMode2D.Impulse);
             //_rb.AddForce(new Vector2(0, _jumpUpwardForce), ForceMode2D.Impulse);
-            _rb.velocity = new Vector2(_rb.velocity.x, _jumpUpwardForce);
+            _rb.velocity = new Vector2(_rb.velocity.x, _jumpUpwardForce * offset);
             yield return null;
             _rb.velocity = new Vector2(-_jumpForwardForce, _rb.velocity.y);
             //_rb.AddForce(new Vector2(-_jumpForwardForce, 0), ForceMode2D.Impulse);
@@ -151,9 +158,9 @@ public class WarriorBug : MonoBehaviour
         hitMiddle = Physics2D.Raycast(middle, Vector2.down, _groundDetectDistance, _groundLayer);
         hitLeft = Physics2D.Raycast(left, Vector2.down, _groundDetectDistance, _groundLayer);
         hitRight = Physics2D.Raycast(right, Vector2.down, _groundDetectDistance, _groundLayer);
-        Debug.DrawRay(middle, Vector2.down * _groundDetectDistance, Color.red);
-        Debug.DrawRay(left, Vector2.down * _groundDetectDistance, Color.red);
-        Debug.DrawRay(right, Vector2.down * _groundDetectDistance, Color.red);
+        //Debug.DrawRay(middle, Vector2.down * _groundDetectDistance, Color.red);
+        //Debug.DrawRay(left, Vector2.down * _groundDetectDistance, Color.red);
+        //Debug.DrawRay(right, Vector2.down * _groundDetectDistance, Color.red);
         bool isGround = hitLeft.collider != null || hitMiddle.collider != null || hitRight.collider != null;
         //_playerAnimation.Jump(!isGround);
         return isGround;

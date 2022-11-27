@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3af6d1de3449994988ecb6607f9186c, type: 3}
   m_Name: Health 1
   m_EditorClassIdentifier: 
-  upgradeType: 22
-  upgradeIcon: {fileID: 0}
-  title: 
-  description: 
+  upgradeType: 23
+  upgradeIcon: {fileID: 9069444966101369462, guid: 36dd37d153768b5408025fd3fe73d0b3, type: 3}
+  title: Health
+  description: Max Health +20%

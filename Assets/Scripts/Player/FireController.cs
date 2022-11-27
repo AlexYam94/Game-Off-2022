@@ -28,6 +28,12 @@ public class FireController : MonoBehaviour
 
     public int poolCount = 0;
 
+    public float capacityMultiplier = 1;
+
+    public float reloadTimeMultiplier = 1;
+
+    public float fireRateMultiplier = 1f;
+
     float _reloadTimeCounter;
     private int bulletCount;
     //ObjectPool<Bullet> _bulletPool;
@@ -35,8 +41,11 @@ public class FireController : MonoBehaviour
     Transform _whereToFire;
     FirePattern _pattern;
     float _fireCounter = 0;
+
     //IEnumerator _currentReloadCoroutine;
-    
+
+    private UpgradeController _upgradeController;
+
     // Transform of the GameObject you want to shake
     private Transform transform;
 
@@ -67,9 +76,10 @@ public class FireController : MonoBehaviour
         _playerAnimation = GetComponent<PlayerAnimation>();
         _whereToFire = _firePosition;
         //_bulletPool = new ObjectPool<Bullet>(CreateBullet, _bullectPrefab, _firePosition, _bulletPoolInitialCount);
-        bulletCount = _currentWeapon.capacity;
+        bulletCount = Mathf.CeilToInt(_currentWeapon.capacity * capacityMultiplier);
         initialPosition = Camera.main.transform.localPosition;
         _cinemachineBasicMultiChannelPerlin = _virtCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        _upgradeController = GetComponent<UpgradeController>();
     }
 
     private void OnLevelWasLoaded()
@@ -85,16 +95,16 @@ public class FireController : MonoBehaviour
 
     private void Update()
     {
-        _ammoText.text = bulletCount + "/" +_currentWeapon.capacity;
+        _ammoText.text = bulletCount + "/" + Mathf.CeilToInt(_currentWeapon.capacity * capacityMultiplier);
         //poolCount = _bulletPool.GetCount();
         //DecideFirePosition();
-        if (Input.GetKeyDown(KeyCode.R) && bulletCount < _currentWeapon.capacity)
+        if (Input.GetKeyDown(KeyCode.R) && bulletCount < Mathf.CeilToInt(_currentWeapon.capacity * capacityMultiplier))
         {
             TriggerReload();
         }
         if (_reloadTimeCounter > 0)
         {
-            _reloadSlider.value = _reloadTimeCounter / _currentWeapon.reloadTime;
+            _reloadSlider.value = _reloadTimeCounter / _currentWeapon.reloadTime * reloadTimeMultiplier;
             _reloadTimeCounter -= Time.deltaTime;
             return;
         }
@@ -102,7 +112,7 @@ public class FireController : MonoBehaviour
         {
             _reloadSlider.gameObject.SetActive(false);
             _reloading = false;
-            bulletCount = _currentWeapon.capacity;
+            bulletCount = Mathf.CeilToInt(_currentWeapon.capacity * capacityMultiplier);
         }
         if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse0))
         {
@@ -110,7 +120,7 @@ public class FireController : MonoBehaviour
             {
                 if (_fireCounter <= 0)
                 {
-                    _fireCounter = _currentWeapon.fireRate;
+                    _fireCounter = _currentWeapon.fireRate * fireRateMultiplier;
                     if (bulletCount <= 0)
                     {
                         _audioSource.PlayOneShot(_emptyGunShot);
@@ -129,7 +139,7 @@ public class FireController : MonoBehaviour
                 TriggerReload();
             }
         }
-        _fireCounter -= Time.deltaTime;
+        _fireCounter = Mathf.Max(0, _fireCounter - Time.deltaTime);
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
@@ -146,7 +156,7 @@ public class FireController : MonoBehaviour
     private void TriggerReload()
     {
         if (_reloading) return;
-        _reloadTimeCounter = _currentWeapon.reloadTime;
+        _reloadTimeCounter = _currentWeapon.reloadTime * reloadTimeMultiplier;
         _reloadSlider.gameObject.SetActive(true);
         _reloadSlider.value = 0;
         _reloading = true;
@@ -175,7 +185,7 @@ public class FireController : MonoBehaviour
             _canFire = false;
         }
 
-        _currentWeapon.Fire().Invoke(_firePosition,_firePosition.transform.right, GetComponent<UpgradeController>().damageMultiplier);
+        _currentWeapon.Fire().Invoke(_firePosition,_firePosition.transform.right, _upgradeController.damageMultiplier);
         _playerAnimation.Shoot();
         _audioSource.PlayOneShot(_currentWeapon.gunshot);
         bulletCount -= 1;
@@ -227,7 +237,7 @@ public class FireController : MonoBehaviour
 
     public void ChangeWeapon(Weapon nextWeapon)
     {
-        bulletCount = nextWeapon.capacity;
+        bulletCount = Mathf.CeilToInt(nextWeapon.capacity * capacityMultiplier);
         _currentWeapon = nextWeapon;
         //StopCoroutine(_currentReloadCoroutine);
         _playerAnimation.OverrideArmController(nextWeapon.weaponAnimatorController);
@@ -236,6 +246,6 @@ public class FireController : MonoBehaviour
 
     public void Reload(float percentage)
     {
-        bulletCount += (int)Mathf.Ceil(_currentWeapon.capacity * percentage);
+        bulletCount += (int)Mathf.Ceil(_currentWeapon.capacity * capacityMultiplier * percentage);
     }
 }

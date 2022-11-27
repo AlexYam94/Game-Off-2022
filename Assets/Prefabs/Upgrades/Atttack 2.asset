@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Atttack 2
   m_EditorClassIdentifier: 
   upgradeType: 1
-  upgradeIcon: {fileID: 0}
-  title: 
-  description: 
+  upgradeIcon: {fileID: 21300000, guid: 0bf67b4360dc1cd4caa0338c55219e9e, type: 3}
+  title: Damage
+  description: Increase bullet damage by 20%

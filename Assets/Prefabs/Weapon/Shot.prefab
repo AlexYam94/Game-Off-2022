@@ -5010,10 +5010,10 @@ MonoBehaviour:
   bulletSpeed: 60
   _impactEffect: {fileID: 6484918775218655021, guid: c2f40a2f5a9d81e46b710ff7bcf2016c, type: 3}
   _lifeTime: 1
-  _damageAmount: 6
+  _damageAmount: 3
   _penetrateAmount: 0
   _groundLayer: 6
-  _knockbackForce: 250
+  _knockbackForce: 400
   _particleSystem: {fileID: 3133458217945968605}
   _hitPauseFrame: 1
   damageMultiplier: 1

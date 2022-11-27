@@ -5,7 +5,9 @@ using UnityEngine;
 public class UpgradeController : MonoBehaviour
 {
     [SerializeField] UpgradeEnum[] _uniqueUpgrades;
-    [SerializeField] UpgradeEnum[] _mechaUpgrades; 
+    [SerializeField] UpgradeEnum[] _mechaUpgrades;
+    [SerializeField] MissleSystem _missleSystemLeft;
+    [SerializeField] MissleSystem _missleSystemRight;
 
     Dictionary<UpgradeEnum, int> _existedUpgrades = new Dictionary<UpgradeEnum, int>();
 
@@ -18,6 +20,8 @@ public class UpgradeController : MonoBehaviour
     WeaponController _weaponController;
     PlayerHealthController _playerHealthController;
     EquipmentController _equipmentController;
+    FireController _fireController;
+    ThrusterController _thrustController;
 
     // Start is called before the first frame update
     void Start() 
@@ -25,6 +29,8 @@ public class UpgradeController : MonoBehaviour
         _playerController = GetComponent<PlayerController>();
         _playerHealthController = GetComponent<PlayerHealthController>();
         _equipmentController = GetComponent<EquipmentController>();
+        _fireController = GetComponent<FireController>();
+        _thrustController = GetComponent<ThrusterController>();
     }
 
     // Update is called once per frame
@@ -74,22 +80,29 @@ public class UpgradeController : MonoBehaviour
             case UpgradeEnum.ammo1:
             case UpgradeEnum.ammo2:
             case UpgradeEnum.ammo3:
-                ammoCapacityMultiplier *= 1.2f;
+                ammoCapacityMultiplier = 1.2f;
+                _missleSystemLeft.maxAmmo = Mathf.CeilToInt(_missleSystemLeft.maxAmmo * ammoCapacityMultiplier);
+                _fireController.capacityMultiplier *= ammoCapacityMultiplier;
                 break;
             case UpgradeEnum.reload1:
             case UpgradeEnum.reload2:
             case UpgradeEnum.reload3:
-                reloadSpeedMultiplier *= 1.2f;
+                reloadSpeedMultiplier = .8f;
+                _fireController.reloadTimeMultiplier *= reloadSpeedMultiplier;
+                _missleSystemLeft.reloadTimeMultiplier *= reloadSpeedMultiplier;
                 break;
             case UpgradeEnum.fire_rate1:
             case UpgradeEnum.fire_rate2:
             case UpgradeEnum.fire_rate3:
-                fireRateMultiplier *= 1.2f;
+                fireRateMultiplier = 0.8f;
+                _fireController.fireRateMultiplier *= fireRateMultiplier;
+                _missleSystemLeft.fireRateMultiplier *= fireRateMultiplier;
                 break;
             case UpgradeEnum.energy_consumption1:
             case UpgradeEnum.energy_consumption2:
             case UpgradeEnum.energy_consumption3:
-                energyConsumptionMultiplier *= 1.2f;
+                energyConsumptionMultiplier = 0.8f;
+                _thrustController._flyEnergyPerSecond *= energyConsumptionMultiplier;
                 break;
             case UpgradeEnum.mecha:
                 _weaponController.SpawnMechaAtPlayerPosition();

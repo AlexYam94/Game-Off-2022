@@ -14,8 +14,11 @@ public class CamShakeOnActive : MonoBehaviour
     void Start()
     {
 
-        _cinemachineBasicMultiChannelPerlin = _virtCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        _cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = _camShakeMagnitude;
+        _cinemachineBasicMultiChannelPerlin = _virtCam?.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        if (_cinemachineBasicMultiChannelPerlin != null)
+        {
+            _cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = _camShakeMagnitude;
+        }
     }
     private void OnEnable()
     {
@@ -24,7 +27,10 @@ public class CamShakeOnActive : MonoBehaviour
 
     private void OnDisable()
     {
-        _cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
+        if (_cinemachineBasicMultiChannelPerlin != null)
+        {
+            _cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
+        }
 
     }
 

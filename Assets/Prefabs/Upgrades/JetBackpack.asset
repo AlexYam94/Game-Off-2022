@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: JetBackpack
   m_EditorClassIdentifier: 
   upgradeType: 16
-  upgradeIcon: {fileID: 21300000, guid: 0ccc508108fa6ed4fa11b4a467d7f609, type: 3}
-  title: 
-  description: Unlock Jet Backpack (Fly speed +50%, energy +25%)
+  upgradeIcon: {fileID: 21300000, guid: 6ac286327762fa14c9b84d9e3e8143fc, type: 3}
+  title: Jet Backpack
+  description: Fly speed +50%, max energy +25%

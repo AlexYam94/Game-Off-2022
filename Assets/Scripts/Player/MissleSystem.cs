@@ -52,7 +52,7 @@ public class MissleSystem : MonoBehaviour
         _fireCounter = Mathf.Max(0, _fireCounter);
         if (_reloadTimeCounter > 0)
         {
-            _reloadSlider.value = _reloadTimeCounter / _reloadTime * reloadTimeMultiplier;
+            _reloadSlider.value = _reloadTimeCounter / (_reloadTime * reloadTimeMultiplier);
             _reloadTimeCounter -= Time.deltaTime;
             return;
         }

@@ -104,7 +104,7 @@ public class FireController : MonoBehaviour
         }
         if (_reloadTimeCounter > 0)
         {
-            _reloadSlider.value = _reloadTimeCounter / _currentWeapon.reloadTime * reloadTimeMultiplier;
+            _reloadSlider.value = _reloadTimeCounter / (_currentWeapon.reloadTime * reloadTimeMultiplier);
             _reloadTimeCounter -= Time.deltaTime;
             return;
         }

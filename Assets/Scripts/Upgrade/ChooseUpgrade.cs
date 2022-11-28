@@ -8,7 +8,7 @@ using TMPro;
 public class ChooseUpgrade : MonoBehaviour
 {
     [SerializeField] Upgrade[] upgradeList;
-    [SerializeField] Button[] _upgradeButtons;
+    [SerializeField] UpgradeButton[] _upgradeButtons;
     [SerializeField] float _selectedUpgradeButtonDisappearAfterSecond = 1.5f;
     [SerializeField] float _chooseUpgradeTime = 10f;
     [SerializeField] Scrollbar _chooseUpgradeSlider;
@@ -22,7 +22,7 @@ public class ChooseUpgrade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _playerUpgradeController = GameObject.FindGameObjectWithTag("Player").GetComponent<UpgradeController>();
+        _playerUpgradeController = GameObject.FindGameObjectWithTag("Player").GetComponent<UpgradeController>();    
     }
 
     private void Update()
@@ -34,7 +34,7 @@ public class ChooseUpgrade : MonoBehaviour
         }
         if (_isChoosingUpgrade && _upgradeTimeCounter <= 0)
         {
-            _upgradeButtons[0]?.onClick?.Invoke();
+            _upgradeButtons[0].button?.onClick?.Invoke();
             _chooseUpgradeSlider.gameObject.SetActive(false);
         }
     }
@@ -73,16 +73,17 @@ public class ChooseUpgrade : MonoBehaviour
             if (upgradeLoopCount > _maxRandomUpgradeLoop)
             {
                 nextUpgrades[i] = null;
-                _upgradeButtons[i].onClick.RemoveAllListeners();
+                _upgradeButtons[i].button.onClick.RemoveAllListeners();
                 _upgradeButtons[i].gameObject.SetActive(false);
             }
             else
             {
-                _upgradeButtons[i].onClick.RemoveAllListeners();
+                _upgradeButtons[i].button.onClick.RemoveAllListeners();
                 _upgradeButtons[i].gameObject.SetActive(true);
-                _upgradeButtons[i].image.sprite = u.upgradeIcon;
-                _upgradeButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = u.description;
-                _upgradeButtons[i].onClick.AddListener(Upgrade(u.upgradeType, _upgradeButtons[i]));
+                _upgradeButtons[i].icon.sprite = u.upgradeIcon;
+                _upgradeButtons[i].titleText.text = u.title;
+                _upgradeButtons[i].description.text = u.description;
+                _upgradeButtons[i].button.onClick.AddListener(Upgrade(u.upgradeType, _upgradeButtons[i].button));
                 nextUpgrades[i] = u;
             }
         }
@@ -106,7 +107,7 @@ public class ChooseUpgrade : MonoBehaviour
     {
         foreach(var b in _upgradeButtons)
         {
-            if (!b.Equals(button))
+            if (!b.button.Equals(button))
             {
                 b.gameObject.SetActive(false);
             }

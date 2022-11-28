@@ -103,7 +103,7 @@ public class WarriorBug : MonoBehaviour
         _isJumping = true;
         _jumpCooldownCounter = _jumpCooldown;
         _groundDetectStartPosition.gameObject.SetActive(false);
-        float offset = 1 - Random.Range(-_jumpSpread, _jumpSpread);
+        float offset = 1 + Random.Range(-_jumpSpread, _jumpSpread);
         if (transform.position.x < _player.transform.position.x)
         {
             //_rb.velocity = new Vector2(_jumpForwardForce, _jumpUpwardForce);
@@ -158,9 +158,9 @@ public class WarriorBug : MonoBehaviour
         hitMiddle = Physics2D.Raycast(middle, Vector2.down, _groundDetectDistance, _groundLayer);
         hitLeft = Physics2D.Raycast(left, Vector2.down, _groundDetectDistance, _groundLayer);
         hitRight = Physics2D.Raycast(right, Vector2.down, _groundDetectDistance, _groundLayer);
-        //Debug.DrawRay(middle, Vector2.down * _groundDetectDistance, Color.red);
-        //Debug.DrawRay(left, Vector2.down * _groundDetectDistance, Color.red);
-        //Debug.DrawRay(right, Vector2.down * _groundDetectDistance, Color.red);
+        Debug.DrawRay(middle, Vector2.down * _groundDetectDistance, Color.red);
+        Debug.DrawRay(left, Vector2.down * _groundDetectDistance, Color.red);
+        Debug.DrawRay(right, Vector2.down * _groundDetectDistance, Color.red);
         bool isGround = hitLeft.collider != null || hitMiddle.collider != null || hitRight.collider != null;
         //_playerAnimation.Jump(!isGround);
         return isGround;

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Battery
   m_EditorClassIdentifier: 
   upgradeType: 17
-  upgradeIcon: {fileID: 21300000, guid: f47213af7e996497b96c4b5df3e6b613, type: 3}
-  title: 
-  description: Increase battery capacity by 20%
+  upgradeIcon: {fileID: 21300000, guid: fa46ae2ea0f80bd41bccb711ab8c9d1c, type: 3}
+  title: External Battery
+  description: Max energy +100%

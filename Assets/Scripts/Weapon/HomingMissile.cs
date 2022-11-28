@@ -29,21 +29,26 @@ public class HomingMissile : MonoBehaviour
     private Collider2D _collider;
     private bool startChasing = false;
     private bool _hit = false;
+    private float _countDown;
     public float damageMultiplier;
+
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _collider = GetComponent<BoxCollider2D>();
-        Destroy(gameObject, _lifeTime);
+        //Destroy(gameObject, _lifeTime);
+        _countDown = _lifeTime;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        _countDown -= Time.deltaTime;
+        if (_countDown <= 0) TriggerExplosion();
         if (_hit) return;
-        //Debug.DrawLine(transform.position, new Vector3(transform.position.x +   _explosionArea, transform.position.y + _explosionArea, 0));
+        Debug.DrawLine(transform.position, new Vector3(transform.position.x +   _explosionArea, transform.position.y + _explosionArea, 0));
         if (!startChasing)
         {
             flyForward();
@@ -63,19 +68,25 @@ public class HomingMissile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-       if( ((1 << other.gameObject.layer) & _hitLayer) == (1 << other.gameObject.layer)){
-            _explosionSound.gameObject.SetActive(true);
-            _explosionSound.transform.SetParent(null);
-            _sprite.enabled = false;
-            _collider.enabled = false;
-            _rb.velocity = Vector2.zero;
-            _hit = true;
-            _smoke.emissionRate = 0;
-            _light.SetActive(false);
-            _explosionEffect.SetActive(true);
-            ExplosionDamage();
+       if( ((1 << other.gameObject.layer) & _hitLayer) == (1 << other.gameObject.layer))
+        {
+            TriggerExplosion();
         }
-       
+
+    }
+
+    private void TriggerExplosion()
+    {
+        _explosionSound.gameObject.SetActive(true);
+        _explosionSound.transform.SetParent(null);
+        _sprite.enabled = false;
+        _collider.enabled = false;
+        _rb.velocity = Vector2.zero;
+        _hit = true;
+        _smoke.emissionRate = 0;
+        _light.SetActive(false);
+        _explosionEffect.SetActive(true);
+        ExplosionDamage();
     }
 
     private void ExplosionDamage()

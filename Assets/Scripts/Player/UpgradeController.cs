@@ -127,7 +127,7 @@ public class UpgradeController : MonoBehaviour
             case UpgradeEnum.health1:
             case UpgradeEnum.health2:
             case UpgradeEnum.health3:
-                _playerHealthController.SetHealthScale(1.2f);
+                _playerHealthController.RestoreHealth(.4f);
                 break;
             case UpgradeEnum.ap_bullet:
                 _weaponController.SwitchToAPBullet();

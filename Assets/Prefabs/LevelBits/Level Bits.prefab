@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.083815, z: 0}
+  m_LocalPosition: {x: 0, y: -9.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -62,7 +62,7 @@ Camera:
   far clip plane: 1000
   field of view: 70
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 18
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -315,7 +315,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727668583}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -9.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 70
-    OrthographicSize: 5
+    OrthographicSize: 18
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69d409eecc2dba7428a4de9d370f887f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerTag: Player
+  _playerTag: Cam Follow
   _follow: {fileID: 0}
 --- !u!114 &1584095561
 MonoBehaviour:
@@ -472,7 +472,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 15.477385, y: 37.373497}
+  m_Offset: {x: 1.3593369, y: -4.5667152}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -483,7 +483,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 142.1239, y: 93.3524}
+  m_Size: {x: 200, y: 60}
   m_EdgeRadius: 0
 --- !u!66 &3442298716123901238
 CompositeCollider2D:
@@ -505,20 +505,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 3540048336049116197}
     m_ColliderPaths:
-    - - X: 865393344
-        Y: 840496960
-      - X: -555845632
-        Y: 840496960
-      - X: -555845632
-        Y: -93027040
-      - X: 865393344
-        Y: -93027040
+    - - X: 1013593344
+        Y: 254332848
+      - X: -986406656
+        Y: 254332848
+      - X: -986406656
+        Y: -345667168
+      - X: 1013593344
+        Y: -345667168
   m_CompositePaths:
     m_Paths:
-    - - {x: 86.53931, y: -9.302704}
-      - {x: 86.53931, y: 84.0497}
-      - {x: -55.584564, y: 84.04967}
-      - {x: -55.584534, y: -9.302704}
+    - - {x: 101.35931, y: -34.56672}
+      - {x: 101.35931, y: 25.433285}
+      - {x: -98.64066, y: 25.433256}
+      - {x: -98.64063, y: -34.56672}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -555,5 +555,5 @@ Transform:
   - {fileID: 1727668584}
   - {fileID: 519420032}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

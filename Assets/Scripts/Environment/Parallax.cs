@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    public GameObject _player;
-    public float PixelsPerUnit;
-    public float yOffset = 10f;
-    public float maxYDifference = 10f;
+    Material mat;
+    float distance;
+
+    [Range(0f, 0.5f)]
+    public float speed = 0.5f;
 
     void Start()
     {
+        mat = GetComponent<Renderer>().material;
     }
 
     void Update()
     {
-        Vector2 newPos = new Vector2(_player.transform.position.x, _player.transform.position.y + yOffset);
-        var pos = Vector2.MoveTowards(transform.position, newPos, PixelsPerUnit);
-        if (Mathf.Abs(_player.transform.position.y - transform.position.y) > maxYDifference)
-        {
-            pos.y = _player.transform.position.y + yOffset;
-        }
-        transform.position = pos;
+        distance += Time.deltaTime * speed;
+        mat.SetTextureOffset("_MainTex", Vector2.right * distance);
     }
 
 }

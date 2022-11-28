@@ -21,6 +21,6 @@ MonoBehaviour:
   capacity: 30
   reloadTime: 1.8
   fireRate: 0.1
-  spread: 0.2
+  spread: 0.15
   isFlame: 1
   cameraShakeMagnitude: 2

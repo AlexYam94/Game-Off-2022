@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     [SerializeField] int _gameOverSceneIndex;
+    [SerializeField] int _nextSceneIndex = 0;
 
     public void LoadNextScene()
     {
@@ -25,6 +26,14 @@ public class SceneController : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            SceneManager.LoadScene(_nextSceneIndex);
+        }
     }
 
     IEnumerator LoadNexSceneCoroutine()

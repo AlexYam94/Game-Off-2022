@@ -20,13 +20,15 @@ public class GameLoopController : MonoBehaviour
         
     }
 
-    public void EnterInterval()
+    public void EnterInterval(bool firstWave)
     {
+        if (firstWave) return;
         _chooseUpgrade.ShowUpgrades(3);
     }
 
     public void EnableNextLevelEntrace()
     {
-
+        //TODO: Fade in
+        //Load next scene
     }
 }

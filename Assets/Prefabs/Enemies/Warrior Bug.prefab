@@ -445,7 +445,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2092,7 +2092,6 @@ GameObject:
   - component: {fileID: 1608818404}
   - component: {fileID: 1608818410}
   - component: {fileID: 1608818409}
-  - component: {fileID: 1608818408}
   - component: {fileID: 1608818407}
   - component: {fileID: 1608818406}
   - component: {fileID: 1227064142}
@@ -2153,10 +2152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3943d0028cbcb8c479e989d8d4453dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _moveSpeed: 8
   _jumpRange: 30
   _jumpChance: 0.3
-  _jumpUpwardForce: 60
+  _jumpUpwardForce: 40
   _jumpForwardForce: 50
   _groundDetectStartPosition: {fileID: 635130510}
   _groundDetectDistance: 0.7
@@ -2212,33 +2211,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropRate: 0.3
   itemsToDrop: []
---- !u!114 &1608818408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 661074151926445439}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShadowGroup: 0
-  m_ComponentVersion: 1
-  m_HasRenderer: 0
-  m_UseRendererSilhouette: 1
-  m_CastsShadows: 1
-  m_SelfShadows: 0
-  m_ApplyToSortingLayers: 00000000
-  m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  m_ShapePathHash: 0
-  m_Mesh: {fileID: 0}
-  m_InstanceId: -2522
 --- !u!50 &1608818407
 Rigidbody2D:
   serializedVersion: 4
@@ -2251,14 +2223,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 1
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 6
   m_Material: {fileID: 6200000, guid: ba2c2bf3cf6c2ec41ba2dddb386354e9, type: 2}
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!70 &1608818406
 CapsuleCollider2D:

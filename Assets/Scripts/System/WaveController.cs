@@ -9,13 +9,14 @@ public class WaveController : MonoBehaviour
     [SerializeField] int _maxWaves = 20;
     [SerializeField] float _timeBetweenWaves = 20;
     [SerializeField] int _maxEnemyPerWave = 100;
-    [SerializeField] float _enemyNumberWaveMultiplier = 1;
+    [SerializeField] int _enemyNumberWaveMultiplier = 1;
     [SerializeField] TextMeshProUGUI _waveText;
+    [SerializeField] GameObject _intervalTextGameObject;
     [SerializeField] TextMeshProUGUI _intervalCounterText;
     [SerializeField] EnemySpawner[] _enemySpawners;
 
     private GameLoopController _gameLoopController;
-    private int _currentWave = 1;
+    private int _currentWave = 0;
     private int _currentEnemy = 0;
     private bool _isInterval = true;
     private bool _waveStarted = false;
@@ -30,7 +31,11 @@ public class WaveController : MonoBehaviour
         {
             e.reduceEnemyNumberDelegate = ReduceEnemyNumber();
         }
-        _gameLoopController = GetComponent<GameLoopController>();
+        _gameLoopController = GetComponent<GameLoopController>(); 
+        _isInterval = true;
+        _waveStarted = false;
+        _currentWave = 0;
+        _currentEnemy = 0;
     }
 
     // Update is called once per frame
@@ -45,8 +50,15 @@ public class WaveController : MonoBehaviour
         if (!_isInterval && _currentEnemy <= 0 && _waveStarted) //Wave cleared, enter interval
         {
             //Notify gameloop controller to enter interval
-            _gameLoopController.EnterInterval();
-            _intervalCounterText.gameObject.SetActive(true);
+            if (_currentWave <= 0)
+            {
+                _gameLoopController.EnterInterval(true);
+            }
+            else
+            {
+                _gameLoopController.EnterInterval(false);
+            }
+            _intervalTextGameObject.SetActive(true);
             _isInterval = true;
             _intervalCounter = _timeBetweenWaves;
             _currentWave++;
@@ -76,9 +88,9 @@ public class WaveController : MonoBehaviour
         foreach(var spawner in _enemySpawners)
         {
             //TODO: calculate how ma ny enemy to spawn
-            spawner.Spawn(_currentWave, AddEnemy());
+            spawner.Spawn(_currentWave * _enemyNumberWaveMultiplier, AddEnemy());
         }
-        _intervalCounterText.gameObject.SetActive(false);
+        _intervalTextGameObject.SetActive(false);
         _waveStarted = true;
     }
 

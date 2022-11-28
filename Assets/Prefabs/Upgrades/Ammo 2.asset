@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Ammo 2
   m_EditorClassIdentifier: 
   upgradeType: 4
-  upgradeIcon: {fileID: 21300000, guid: b52d5fe7beb6a7346a451621ea02a69d, type: 3}
+  upgradeIcon: {fileID: 21300000, guid: b64f627d8d866314994e2fe2f6a49457, type: 3}
   title: Ammo
-  description: Increase ammo capacity by 20%
+  description: Max ammo +20%

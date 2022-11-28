@@ -9956,15 +9956,15 @@ MonoBehaviour:
   _damage: 15
   _playerDamagePercentage: 0.1
   _startChaseAfter: 0.1
-  _lifeTime: 1.5
+  _lifeTime: 1
   _explosionSound: {fileID: 3257332974867188881}
   _hitLayer:
     serializedVersion: 2
     m_Bits: 4160
   _damageLayer:
     serializedVersion: 2
-    m_Bits: 4352
-  _explosionArea: 10
+    m_Bits: 4416
+  _explosionArea: 3
   _sprite: {fileID: 8269573625567541063}
   _smoke: {fileID: 1241888073}
   _light: {fileID: 7689185155617512394}

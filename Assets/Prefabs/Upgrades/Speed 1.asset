@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Speed 1
   m_EditorClassIdentifier: 
   upgradeType: 20
-  upgradeIcon: {fileID: 21300000, guid: 1223ca7d04e5a4ad08a8d648c4e2a09e, type: 3}
-  title: 
-  description: Increase speed by 20%
+  upgradeIcon: {fileID: 21300000, guid: 6b39900e9b1fd824095a2a1805a98621, type: 3}
+  title: Better engine
+  description: Fly speed +20%

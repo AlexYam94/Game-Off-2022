@@ -114,10 +114,16 @@ public class PlayerHealthController : MonoBehaviour
         UIController.GetInstance().SetHealthBarLength(_maxHealth);
     }
 
+    public void RestoreHealth(float scale)
+    {
+        _currentHealth = Mathf.Min(_maxHealth, _currentHealth + Mathf.CeilToInt(_maxHealth * scale));
+        UpdateHealthUI();
+    }
+
     public void SetHealthScale(float scale)
     {
-        _maxHealth = Mathf.RoundToInt(_maxHealth * scale);
-        _currentHealth = Mathf.RoundToInt(_currentHealth * scale);
+        _maxHealth = Mathf.CeilToInt(_maxHealth * scale);
+        _currentHealth = Mathf.CeilToInt(_currentHealth * scale);
         UpdateHealthUI();
     }
 

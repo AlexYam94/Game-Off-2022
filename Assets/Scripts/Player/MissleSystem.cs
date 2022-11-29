@@ -42,6 +42,7 @@ public class MissleSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale <= 0) return;
         //DrawBox(GetScreenCenter(), Quaternion.identity, Vector3.one, Color.red);
         if (!subWeaponEnabled) return;
         _ammoText.text = _currentAmmo + "/" + maxAmmo;

@@ -77,6 +77,7 @@ public class HomingMissile : MonoBehaviour
 
     private void TriggerExplosion()
     {
+        if (_hit) return;
         _explosionSound.gameObject.SetActive(true);
         _explosionSound.transform.SetParent(null);
         _sprite.enabled = false;

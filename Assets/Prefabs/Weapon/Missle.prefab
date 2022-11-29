@@ -9953,10 +9953,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ead188577d224645be3351c4bd9aabb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 15
+  _damage: 18
   _playerDamagePercentage: 0.1
   _startChaseAfter: 0.1
-  _lifeTime: 1
+  _lifeTime: 1.5
   _explosionSound: {fileID: 3257332974867188881}
   _hitLayer:
     serializedVersion: 2

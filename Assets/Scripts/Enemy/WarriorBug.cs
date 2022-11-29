@@ -33,7 +33,7 @@ public class WarriorBug : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
 
-        GetComponent<EnemyHealthController>().onDeath = Cleanup;
+        GetComponent<EnemyHealthController>().onDeath += Cleanup;
         _scaleX = transform.localScale.x;
 
         _collider = GetComponent<CapsuleCollider2D>();

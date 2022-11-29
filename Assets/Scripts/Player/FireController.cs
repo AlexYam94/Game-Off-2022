@@ -95,6 +95,8 @@ public class FireController : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale <= 0) return;
+        ResetCamShake();
         _ammoText.text = bulletCount + "/" + Mathf.CeilToInt(_currentWeapon.capacity * capacityMultiplier);
         //poolCount = _bulletPool.GetCount();
         //DecideFirePosition();
@@ -151,6 +153,14 @@ public class FireController : MonoBehaviour
         //    StartCoroutine(_currentReloadCoroutine);
         //}
 
+    }
+
+    private void ResetCamShake()
+    {
+        if (_cinemachineBasicMultiChannelPerlin.m_AmplitudeGain > 0)
+        {
+            StartCoroutine(ResetShake());
+        }
     }
 
     private void TriggerReload()
@@ -247,5 +257,10 @@ public class FireController : MonoBehaviour
     public void Reload(float percentage)
     {
         bulletCount += (int)Mathf.Ceil(_currentWeapon.capacity * capacityMultiplier * percentage);
+    }
+    IEnumerator ResetShake()
+    {
+            yield return new WaitForSeconds(.5f);
+            _cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
     }
 }

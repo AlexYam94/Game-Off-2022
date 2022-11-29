@@ -13,6 +13,7 @@ public class PointToCursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale <= 0) return;
         ////rotation
         //Vector3 mousePos = Input.mousePosition;
         //mousePos.z = 5.23f;

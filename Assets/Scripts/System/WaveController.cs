@@ -85,10 +85,13 @@ public class WaveController : MonoBehaviour
 
     public void StartWave()
     {
-        foreach(var spawner in _enemySpawners)
+        foreach (var spawner in _enemySpawners)
         {
             //TODO: calculate how ma ny enemy to spawn
-            spawner.Spawn(_currentWave * _enemyNumberWaveMultiplier, AddEnemy());
+            if (_currentEnemy <= _maxEnemyPerWave)
+            {
+                spawner.Spawn(_currentWave * _enemyNumberWaveMultiplier, AddEnemy());
+            }
         }
         _intervalTextGameObject.SetActive(false);
         _waveStarted = true;

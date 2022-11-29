@@ -36,6 +36,7 @@ public class ThrusterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale <= 0) return;
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Space))
         {
             if (Input.GetKey(KeyCode.LeftShift)) {

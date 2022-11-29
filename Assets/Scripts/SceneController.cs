@@ -18,6 +18,11 @@ public class SceneController : MonoBehaviour
         LoadNextScene();
     }
 
+    public void LoadCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void GameOver()
     {
         SceneManager.LoadScene(_gameOverSceneIndex);

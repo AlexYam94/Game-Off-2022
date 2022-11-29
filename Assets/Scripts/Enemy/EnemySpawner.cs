@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CleanupDeadEnemies();
+        //CleanupDeadEnemies();
         //_spawnCounter -= Time.deltaTime;
         //_increaseCounter -= Time.deltaTime;
         //if (_increaseCounter < 0 && _spawnedEnemies.Count < _maxAvailable)
@@ -100,8 +100,9 @@ public class EnemySpawner : MonoBehaviour
                  UnityEngine.Random.Range(_bounds.min.y, _bounds.max.y),
                  _player.transform.position.z);
             } while (Vector3.Distance(pos, _player.transform.position) < _minPlayerDistance);
-
-            _spawnedEnemies.Add(Instantiate(_enemyToSpawn[index], pos, transform.rotation));
+            var g = Instantiate(_enemyToSpawn[index], pos, transform.rotation);
+            //_spawnedEnemies.Add(g);
+            g.GetComponent<EnemyHealthController>().onDeath += () => reduceEnemyNumberDelegate.Invoke();
             addEnemyDelegate.Invoke();
         }
 

@@ -30,11 +30,12 @@ public class EnemyHealthController : MonoBehaviour
             {
                 Instantiate(_deathEffect, transform.position, transform.rotation);
             }
-            var bodyParts = WarriorBugDeathEffectObjectPool.instance.GetDeathEffect();
+            var bodyParts = WarriorBugDeathEffectObjectPool.instance.GetBodyParts();
             if (bodyParts != null)
             {
                 bodyParts.transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
                 bodyParts.transform.rotation = transform.rotation;
+                bodyParts.GetComponent<DestroyOverTime>().Reset();
             }
             if (_deathSound != null)
             {

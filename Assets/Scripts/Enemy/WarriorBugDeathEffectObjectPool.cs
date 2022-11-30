@@ -27,9 +27,11 @@ public class WarriorBugDeathEffectObjectPool : MonoBehaviour
         _cache = new List<GameObject>();
     }
 
-    public GameObject GetDeathEffect()
+    public GameObject GetBodyParts()
     {
-        return _pool.Get();
+        var g = _pool.Get();
+        g.SetActive(true);
+        return g;
     }
 
     public GameObject CreateDeathEffect()
@@ -44,7 +46,8 @@ public class WarriorBugDeathEffectObjectPool : MonoBehaviour
     {
         foreach(var g in _cache)
         {
-            _pool.Release(g);
+            if(_pool.CountActive>0)
+                _pool.Release(g);
         }
     }
 }

@@ -33,4 +33,9 @@ public class DestroyOverTime : MonoBehaviour
             }
         }
     }
+
+    public void Reset()
+    {
+        _deactCounter = _lifeTime;
+    }
 }

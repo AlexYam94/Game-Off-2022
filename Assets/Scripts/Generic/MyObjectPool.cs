@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool<T> where T : MonoBehaviour
+public class MyObjectPool<T> where T : MonoBehaviour
 {
     Queue<T> _pool;
     T _gameObject;
@@ -11,7 +11,7 @@ public class ObjectPool<T> where T : MonoBehaviour
     Func<T, Transform, T> _createFunction;
     int _initObjCounts = 0;
 
-    public ObjectPool(Func<T, Transform, T> createFunction, T gameObject, Transform position)
+    public MyObjectPool(Func<T, Transform, T> createFunction, T gameObject, Transform position)
     {
         _pool = new Queue<T>();
         _createFunction = createFunction;
@@ -19,7 +19,7 @@ public class ObjectPool<T> where T : MonoBehaviour
         _position = position;
     }
 
-    public ObjectPool(Func<T, Transform, T> createFunction, T gameObject, Transform position, int initialObjectsCount)
+    public MyObjectPool(Func<T, Transform, T> createFunction, T gameObject, Transform position, int initialObjectsCount)
     {
         _pool = new Queue<T>();
         _createFunction = createFunction;

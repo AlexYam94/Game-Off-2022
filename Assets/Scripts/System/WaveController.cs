@@ -30,6 +30,7 @@ public class WaveController : MonoBehaviour
         foreach(var e in _enemySpawners)
         {
             e.reduceEnemyNumberDelegate = ReduceEnemyNumber();
+            e.addEnemyDelegate = AddEnemy();
         }
         _gameLoopController = GetComponent<GameLoopController>(); 
         _isInterval = true;
@@ -81,6 +82,11 @@ public class WaveController : MonoBehaviour
     {
         _currentEnemy = 0;
         _waveStarted = false;
+        foreach (var spawner in _enemySpawners)
+        {
+            spawner.CleanPool();
+        }
+        WarriorBugDeathEffectObjectPool.instance.CleanPool();
     }
 
     public void StartWave()
@@ -90,7 +96,7 @@ public class WaveController : MonoBehaviour
             //TODO: calculate how ma ny enemy to spawn
             if (_currentEnemy <= _maxEnemyPerWave)
             {
-                spawner.Spawn(_currentWave * _enemyNumberWaveMultiplier, AddEnemy());
+                spawner.Spawn(_currentWave * _enemyNumberWaveMultiplier);
             }
         }
         _intervalTextGameObject.SetActive(false);

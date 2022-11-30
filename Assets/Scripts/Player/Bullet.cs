@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     SpriteRenderer _sprite;
     Collider2D _collider;
     TrailRenderer _trail;
-    ObjectPool<Bullet> _pool;
+    MyObjectPool<Bullet> _pool;
     int _penetrateCount = 0;
 
     Rigidbody2D _rb;
@@ -31,12 +31,12 @@ public class Bullet : MonoBehaviour
     Vector2 _moveDir = Vector2.right;
     Vector3 _lastFramePos;
 
-    public void SetObjectPool(ObjectPool<Bullet> pool)
+    public void SetObjectPool(MyObjectPool<Bullet> pool)
     {
         _pool = pool;
     }
 
-    public ObjectPool<Bullet> GetObjectPool()
+    public MyObjectPool<Bullet> GetObjectPool()
     {
         return _pool;
     }

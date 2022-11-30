@@ -368,3 +368,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeTime: 6
+  _DeactiveOverTime: 1

@@ -14,29 +14,51 @@ public class EnemyHealthController : MonoBehaviour
 
     public Action onDeath;
     private AudioSource _as;
+    float _currentHealth;
 
     private void Start()
     {
         _as = GetComponent<AudioSource>();
+        _currentHealth = _totalHealth;
     }
 
-    public void Damage(float damageAmount)
+    private void Update()
     {
-        StartCoroutine(Hit());
-        if ((_totalHealth -= damageAmount) <= 0)
+        if(_currentHealth <= 0)
         {
             if (_deathEffect != null)
             {
                 Instantiate(_deathEffect, transform.position, transform.rotation);
             }
+            var bodyParts = WarriorBugDeathEffectObjectPool.instance.GetDeathEffect();
+            if (bodyParts != null)
+            {
+                bodyParts.transform.position = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
+                bodyParts.transform.rotation = transform.rotation;
+            }
             if (_deathSound != null)
             {
-                GameObject.Instantiate(_deathSound,transform.position, Quaternion.identity).transform.SetParent(null);
+                GameObject.Instantiate(_deathSound, transform.position, Quaternion.identity).transform.SetParent(null);
             }
             GetComponent<DropitemController>()?.DropItem();
             ScoreController.GetInstance()?.Add(_score);
             onDeath?.Invoke();
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void Reset()
+    {
+        _currentHealth = _totalHealth;
+        _hitAnimator.enabled = false;
+    }
+
+    public void Damage(float damageAmount)
+    {
+        StartCoroutine(Hit());
+        if ((_currentHealth -= damageAmount) <= 0)
+        {
         }
         else
         {

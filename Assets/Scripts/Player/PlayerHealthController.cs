@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthController : MonoBehaviour
 {
@@ -79,7 +80,8 @@ public class PlayerHealthController : MonoBehaviour
         {
             _currentHealth = 0;
             //gameObject.SetActive(false);
-            RespawnController.instance.Respawn();
+            //RespawnController.instance.Respawn();
+            SceneManager.LoadScene(3);
         }
         else
         {

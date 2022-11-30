@@ -80,6 +80,11 @@ public class WarriorBug : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        _groundDetectStartPosition.gameObject.SetActive(true);
+    }
+
     private void MoveToPlayer()
     {
         if (transform.position.x < _player.transform.position.x)

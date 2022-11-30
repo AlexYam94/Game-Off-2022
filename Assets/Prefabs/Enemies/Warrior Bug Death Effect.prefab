@@ -41,7 +41,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7148765002265561101}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a669ef53b5a91e49b17266a9d2b0283, type: 3}
   m_Name: 
@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeTime: 7
+  _DeactiveOverTime: 0
 --- !u!1 &7976199063865038801
 GameObject:
   m_ObjectHideFlags: 0

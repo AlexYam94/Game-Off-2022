@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeTime: 6
+  _DeactiveOverTime: 1
 --- !u!1 &6062318717931641364
 GameObject:
   m_ObjectHideFlags: 0

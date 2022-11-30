@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float _minPlayerDistance = 2f;
 
     public Action reduceEnemyNumberDelegate;
+    public Action addEnemyDelegate;
 
+    ObjectPool<GameObject> _pool;
     GameObject _player;
     float _spawnCounter;
     float _increaseCounter;
@@ -32,6 +35,7 @@ public class EnemySpawner : MonoBehaviour
         _bounds = _spawnArea.bounds;
         _spawnedEnemies = new List<GameObject>();
         _player = GameObject.FindGameObjectWithTag("Player");
+        _pool = new ObjectPool<GameObject>(()=>Spawn(), null, null, null, false, 20, 200);
     }
 
     // Update is called once per frame
@@ -67,31 +71,26 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void Spawn()
+    private GameObject Spawn()
     {
-        for (int i = 0; i < _spawnNumber; i++)
-        {
-            System.Random rand = new System.Random();
-            int index = rand.Next(0, _enemyToSpawn.Length);
-            Vector3 pos;
-            do
-            {
-                pos = new Vector3(
-                 UnityEngine.Random.Range(_bounds.min.x, _bounds.max.x),
-                 UnityEngine.Random.Range(_bounds.min.y, _bounds.max.y),
-                 _player.transform.position.z);
-            } while (Vector3.Distance(pos, _player.transform.position) < _minPlayerDistance);
-
-            _spawnedEnemies.Add(Instantiate(_enemyToSpawn[index], pos, transform.rotation));
-        }
+        System.Random rand = new System.Random();
+        int index = rand.Next(0, _enemyToSpawn.Length);
+        var g = Instantiate(_enemyToSpawn[index], Vector3.zero, transform.rotation);
+        _spawnedEnemies.Add(g);
+        g.GetComponent<EnemyHealthController>().onDeath += () => reduceEnemyNumberDelegate.Invoke();
+        g.GetComponent<EnemyHealthController>().onDeath += () => _pool.Release(g);
+        //addEnemyDelegate.Invoke();
+        return g;
     }
 
-    public void Spawn(int numberToSpawn, Action addEnemyDelegate)
+    public void Spawn(int numberToSpawn)
     {
         for (int i = 0; i < numberToSpawn; i++)
         {
+            var g = _pool.Get();
+            g.GetComponent<EnemyHealthController>().Reset();
+            g.SetActive(true);
             System.Random rand = new System.Random();
-            int index = rand.Next(0, _enemyToSpawn.Length);
             Vector3 pos;
             do
             {
@@ -100,11 +99,34 @@ public class EnemySpawner : MonoBehaviour
                  UnityEngine.Random.Range(_bounds.min.y, _bounds.max.y),
                  _player.transform.position.z);
             } while (Vector3.Distance(pos, _player.transform.position) < _minPlayerDistance);
-            var g = Instantiate(_enemyToSpawn[index], pos, transform.rotation);
-            //_spawnedEnemies.Add(g);
-            g.GetComponent<EnemyHealthController>().onDeath += () => reduceEnemyNumberDelegate.Invoke();
+            g.transform.position = pos;
+            //Spawn();
+            //System.Random rand = new System.Random();
+            //int index = rand.Next(0, _enemyToSpawn.Length);
+            //Vector3 pos;
+            //do
+            //{
+            //    pos = new Vector3(
+            //     UnityEngine.Random.Range(_bounds.min.x, _bounds.max.x),
+            //     UnityEngine.Random.Range(_bounds.min.y, _bounds.max.y),
+            //     _player.transform.position.z);
+            //} while (Vector3.Distance(pos, _player.transform.position) < _minPlayerDistance);
+            //var g = Instantiate(_enemyToSpawn[index], pos, transform.rotation);
+            ////_spawnedEnemies.Add(g);
+            //g.GetComponent<EnemyHealthController>().onDeath += () => reduceEnemyNumberDelegate.Invoke();
             addEnemyDelegate.Invoke();
         }
 
+    }
+
+    public void CleanPool()
+    {
+        for(int i = 0; i < _spawnedEnemies.Count; i++)
+        {
+            if (_pool.CountActive > 0)
+            {
+                _pool.Release(_spawnedEnemies[i]);
+            }
+        }
     }
 }
